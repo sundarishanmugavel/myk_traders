@@ -366,57 +366,69 @@ html, body {
   animation: shimmerBeam 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Pulsing Outer Aura Halo Rings for Buttons */
+/* Pulsing Outer Aura Halo Rings for Buttons (Expanding Outwards Continuously) */
 @keyframes redPulseHalo {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5), 0 10px 25px -5px rgba(220, 38, 38, 0.4);
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6), 0 4px 16px rgba(220, 38, 38, 0.35);
   }
-  50% {
-    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0), 0 18px 35px -5px rgba(220, 38, 38, 0.65);
+  70% {
+    box-shadow: 0 0 0 14px rgba(220, 38, 38, 0), 0 6px 20px rgba(220, 38, 38, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0), 0 4px 16px rgba(220, 38, 38, 0.35);
   }
 }
 
 .animate-red-halo {
-  animation: redPulseHalo 2.2s ease-in-out infinite;
+  animation: redPulseHalo 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes bluePulseHalo {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(91, 141, 239, 0.5), 0 10px 25px -5px rgba(16, 26, 54, 0.35);
+  0% {
+    box-shadow: 0 0 0 0 rgba(91, 141, 239, 0.6), 0 4px 16px rgba(16, 26, 54, 0.35);
   }
-  50% {
-    box-shadow: 0 0 0 10px rgba(91, 141, 239, 0), 0 18px 35px -5px rgba(91, 141, 239, 0.65);
+  70% {
+    box-shadow: 0 0 0 14px rgba(91, 141, 239, 0), 0 6px 20px rgba(91, 141, 239, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(91, 141, 239, 0), 0 4px 16px rgba(16, 26, 54, 0.35);
   }
 }
 
 .animate-blue-halo {
-  animation: bluePulseHalo 2.5s ease-in-out infinite;
+  animation: bluePulseHalo 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes amberPulseHalo {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(245, 179, 51, 0.5), 0 10px 25px -5px rgba(245, 179, 51, 0.35);
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 179, 51, 0.6), 0 4px 16px rgba(245, 179, 51, 0.35);
   }
-  50% {
-    box-shadow: 0 0 0 10px rgba(245, 179, 51, 0), 0 18px 35px -5px rgba(245, 179, 51, 0.65);
+  70% {
+    box-shadow: 0 0 0 14px rgba(245, 179, 51, 0), 0 6px 20px rgba(245, 179, 51, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 179, 51, 0), 0 4px 16px rgba(245, 179, 51, 0.35);
   }
 }
 
 .animate-amber-halo {
-  animation: amberPulseHalo 2.5s ease-in-out infinite;
+  animation: amberPulseHalo 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes emeraldPulseHalo {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(85, 201, 154, 0.5), 0 10px 25px -5px rgba(85, 201, 154, 0.35);
+  0% {
+    box-shadow: 0 0 0 0 rgba(85, 201, 154, 0.6), 0 4px 16px rgba(85, 201, 154, 0.35);
   }
-  50% {
-    box-shadow: 0 0 0 10px rgba(85, 201, 154, 0), 0 18px 35px -5px rgba(85, 201, 154, 0.65);
+  70% {
+    box-shadow: 0 0 0 14px rgba(85, 201, 154, 0), 0 6px 20px rgba(85, 201, 154, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(85, 201, 154, 0), 0 4px 16px rgba(85, 201, 154, 0.35);
   }
 }
 
 .animate-emerald-halo {
-  animation: emeraldPulseHalo 2.5s ease-in-out infinite;
+  animation: emeraldPulseHalo 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Exact ctaPulseGlow Animations Matched per Product Theme Color */
@@ -519,4 +531,11 @@ html, body {
 
 .astroved-cta-btn:hover {
   transform: translateY(-2px);
+}
+
+/* Tablet Specific Formatting (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet-2col-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }

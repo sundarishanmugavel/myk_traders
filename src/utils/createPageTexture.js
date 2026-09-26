@@ -45,9 +45,9 @@ export function createPageCanvasTexture(pageData, onLoaded) {
     ctx.fillRect(0, 0, width, height);
     ctx.restore();
 
-    // 2. PRODUCT IMAGE RENDERING
-    const maxProdW = width * 0.42;
-    const maxProdH = height * 0.63;
+    // 2. PRODUCT IMAGE RENDERING (+15% Larger Visual Stage)
+    const maxProdW = width * 0.48;
+    const maxProdH = height * 0.72;
     let prodW = maxProdW;
     let prodH = (img.height / img.width) * prodW;
 
@@ -56,15 +56,15 @@ export function createPageCanvasTexture(pageData, onLoaded) {
       prodW = (img.width / img.height) * prodH;
     }
 
-    const prodX = width * 0.74 - prodW / 2;
-    const prodY = height * 0.53 - prodH / 2;
+    const prodX = width * 0.75 - prodW / 2;
+    const prodY = height * 0.52 - prodH / 2;
 
     // Soft Floor Shadow
     ctx.save();
     const shadowX = prodX + prodW * 0.5;
     const shadowY = prodY + prodH * 0.95;
     const shadowRx = prodW * 0.45;
-    const shadowRy = 48;
+    const shadowRy = 52;
 
     const outerShadow = ctx.createRadialGradient(shadowX, shadowY, 8, shadowX, shadowY, shadowRx);
     outerShadow.addColorStop(0, 'rgba(15, 23, 42, 0.25)');
@@ -86,7 +86,7 @@ export function createPageCanvasTexture(pageData, onLoaded) {
     const maxLeftContentW = width * 0.46;
     let currentY = height * 0.22;
 
-    // Top Category Badge Pill
+    // Top Category Badge Pill (Deep Navy / Muted Blue Styling)
     if (pageData.category || pageData.badge) {
       const badgeText = (pageData.category || pageData.badge).toUpperCase();
       ctx.save();
@@ -96,16 +96,16 @@ export function createPageCanvasTexture(pageData, onLoaded) {
       const bWidth = badgeMetrics.width + padX * 2;
       const bHeight = 56;
 
-      ctx.fillStyle = pageData.badgeBg || 'rgba(2, 132, 199, 0.12)';
+      ctx.fillStyle = 'rgba(11, 27, 61, 0.07)';
       ctx.beginPath();
       ctx.roundRect(leftMargin, currentY, bWidth, bHeight, 28);
       ctx.fill();
 
-      ctx.strokeStyle = pageData.badgeBorder || 'rgba(2, 132, 199, 0.4)';
+      ctx.strokeStyle = 'rgba(11, 27, 61, 0.2)';
       ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      ctx.fillStyle = pageData.accentColor || '#0284C7';
+      ctx.fillStyle = '#0B1B3D'; // Deep Navy / Muted Blue Text
       ctx.textBaseline = 'middle';
       ctx.fillText(badgeText, leftMargin + padX, currentY + bHeight / 2 + 1);
       ctx.restore();
@@ -113,14 +113,15 @@ export function createPageCanvasTexture(pageData, onLoaded) {
       currentY += bHeight + 28;
     }
 
-    // Main Large Editorial Headline
+    // Main Large Editorial Headline (Line 1: Deep Navy, Line 2: MYK Red #EF1C2D)
     ctx.save();
     ctx.font = '900 118px "Plus Jakarta Sans", "Inter", system-ui, sans-serif';
     ctx.textBaseline = 'top';
 
     const lines = pageData.title.split('\n');
     lines.forEach((line, lineIdx) => {
-      ctx.fillStyle = lineIdx === 1 ? pageData.accentColor || '#0284C7' : '#0B1B3D';
+      // Main Heading -> Deep Navy (#0B1B3D), Highlight Heading -> MYK Red (#EF1C2D)
+      ctx.fillStyle = lineIdx === 1 ? '#EF1C2D' : '#0B1B3D';
       ctx.fillText(line, leftMargin, currentY);
       currentY += 132;
     });
@@ -128,7 +129,7 @@ export function createPageCanvasTexture(pageData, onLoaded) {
 
     currentY += 14;
 
-    // Subtitle Paragraph
+    // Subtitle Paragraph (Dark Grey/Navy)
     ctx.save();
     ctx.font = '600 40px "Inter", system-ui, sans-serif';
     ctx.fillStyle = '#1E293B';
@@ -154,13 +155,13 @@ export function createPageCanvasTexture(pageData, onLoaded) {
 
     currentY = subY + 54;
 
-    // Bullet Checkmarks List
+    // Bullet Checkmarks List (Consistent MYK Red #EF1C2D Icon Circle)
     if (pageData.specs && pageData.specs.length > 0) {
       ctx.save();
 
       pageData.specs.slice(0, 3).forEach((spec) => {
-        // Accent Check Icon Circle
-        ctx.fillStyle = pageData.accentColor || '#0284C7';
+        // MYK Red Check Icon Circle
+        ctx.fillStyle = '#EF1C2D';
         ctx.beginPath();
         ctx.arc(leftMargin + 20, currentY + 20, 20, 0, Math.PI * 2);
         ctx.fill();
@@ -171,7 +172,7 @@ export function createPageCanvasTexture(pageData, onLoaded) {
         ctx.textBaseline = 'middle';
         ctx.fillText('✓', leftMargin + 20, currentY + 21);
 
-        // Spec Text
+        // Spec Text (Deep Navy)
         ctx.textAlign = 'left';
         ctx.font = '700 36px "Inter", system-ui, sans-serif';
         ctx.fillStyle = '#0B1B3D';
@@ -183,24 +184,26 @@ export function createPageCanvasTexture(pageData, onLoaded) {
       currentY += 12;
     }
 
-    // Action CTA Button
+    // Action CTA Button (Full Capsule Pill Design Matched to Screenshot)
     const buttonY = currentY + 36;
-    const btnW = 500;
-    const btnH = 86;
+    const btnW = 520;
+    const btnH = 88;
+    const pillRadius = btnH / 2; // Full Capsule Stadium Curve
 
     ctx.save();
-    // Drop Shadow behind button
-    ctx.shadowColor = pageData.accentColor || 'rgba(2, 132, 199, 0.45)';
-    ctx.shadowBlur = 32;
+    // Soft Diffused Red Shadow behind button
+    ctx.shadowColor = 'rgba(220, 38, 38, 0.45)';
+    ctx.shadowBlur = 28;
     ctx.shadowOffsetY = 12;
 
-    // Button Pill Gradient Fill
+    // Vibrant Red to Crimson Red Gradient Fill
     const btnGrad = ctx.createLinearGradient(leftMargin, buttonY, leftMargin + btnW, buttonY + btnH);
-    btnGrad.addColorStop(0, pageData.accentColor || '#0284C7');
-    btnGrad.addColorStop(1, '#0B1B3D');
+    btnGrad.addColorStop(0, '#E50914');
+    btnGrad.addColorStop(0.5, '#DC2626');
+    btnGrad.addColorStop(1, '#991B1B');
     ctx.fillStyle = btnGrad;
     ctx.beginPath();
-    ctx.roundRect(leftMargin, buttonY, btnW, btnH, 20);
+    ctx.roundRect(leftMargin, buttonY, btnW, btnH, pillRadius);
     ctx.fill();
     ctx.restore();
 
@@ -209,10 +212,10 @@ export function createPageCanvasTexture(pageData, onLoaded) {
     ctx.font = '800 28px "Plus Jakarta Sans", "Inter", sans-serif';
     ctx.fillStyle = '#FFFFFF';
     ctx.textBaseline = 'middle';
-    ctx.fillText(`${pageData.buttonText || 'DISCOVER OUR SOLUTIONS'}`, leftMargin + 40, buttonY + btnH / 2 + 1);
+    ctx.fillText(`${(pageData.buttonText || 'EXPLORE PRODUCTS').toUpperCase()}`, leftMargin + 48, buttonY + btnH / 2 + 1);
 
-    ctx.font = '900 32px "Inter", sans-serif';
-    ctx.fillText('→', leftMargin + btnW - 54, buttonY + btnH / 2 + 1);
+    ctx.font = '800 32px "Inter", sans-serif';
+    ctx.fillText('→', leftMargin + btnW - 60, buttonY + btnH / 2 + 1);
     ctx.restore();
 
     // Stat Counter Row below CTA

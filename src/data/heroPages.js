@@ -15,7 +15,8 @@ export const HERO_PAGES = [
     specs: ['Multi-Stage Purification', 'RO + UV + UF Technology', 'Copper Technology'],
     stats: [
       { num: '15,000+', label: 'Customers Served' },
-      { num: '10+', label: 'Years Experience' },
+      { num: '24/7', label: 'Service Support' },
+      { num: '100%', label: 'Genuine Products' },
       { num: '4.9★', label: 'Customer Rating' },
     ],
     accentColor: '#0284C7',

@@ -1,14 +1,11 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight, Award, Droplets, ShieldCheck, Zap, PhoneCall } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Wrench, MapPin, Gem, PhoneCall } from 'lucide-react';
 
 const TICKER_ITEMS = [
-  { text: '15,000+ Happy Customers across Tamil Nadu', icon: Award, color: 'text-amber-500' },
-  { text: 'Ramesh from Chennai ordered Hydro-Pure RO Purifier • 2 min ago', icon: Droplets, color: 'text-cyan-600' },
-  { text: 'Free Doorstep Installation & 1-Year Warranty', icon: ShieldCheck, color: 'text-emerald-600' },
-  { text: 'Priya from Coimbatore installed 4K AI CCTV Security • 5 min ago', icon: ShieldCheck, color: 'text-indigo-600' },
-  { text: '0% Interest EMI Available on all Solar Inverters', icon: Zap, color: 'text-amber-500' },
-  { text: 'Suresh from Madurai purchased Pure Sine Wave Inverter • 12 min ago', icon: Zap, color: 'text-orange-500' },
-  { text: '24/7 Doorstep Service Support • Call 063800 73771', icon: PhoneCall, color: 'text-blue-600' },
+  { text: 'Professional Installation & Support', icon: Wrench, color: 'text-blue-600' },
+  { text: 'Serving Ramanathapuram District', icon: MapPin, color: 'text-red-600' },
+  { text: 'Genuine Products', icon: Gem, color: 'text-emerald-600' },
+  { text: 'Talk to an Expert: 063800 73771', icon: PhoneCall, color: 'text-purple-600' },
 ];
 
 export default function HeroControls({ onPrev, onNext }) {
@@ -16,7 +13,7 @@ export default function HeroControls({ onPrev, onNext }) {
     <div className="w-full flex flex-col items-end pointer-events-none pb-0 px-0">
       
       {/* FLOATING NAVIGATION ARROWS (COMPACT SIZE) */}
-      <div className="pointer-events-auto w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px] flex items-center justify-end mb-3">
+      <div className="pointer-events-auto w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px] flex items-center justify-end mb-2">
         {/* Navigation Buttons */}
         <div className="flex items-center gap-2">
           <button
@@ -38,7 +35,7 @@ export default function HeroControls({ onPrev, onNext }) {
       </div>
 
       {/* MARQUEE TICKER BAR (ZERO BORDER-RADIUS + STYLISH DESIGN ACCENTS) */}
-      <div className="w-full pointer-events-auto relative bg-white/95 backdrop-blur-md border-y border-slate-200/90 rounded-none py-2.5 px-0 overflow-hidden select-none shadow-md flex items-center">
+      <div className="w-full pointer-events-auto relative bg-white/95 backdrop-blur-md border-y border-slate-200/90 rounded-none py-2 px-0 overflow-hidden select-none shadow-md flex items-center">
         <div className="w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px]">
           {/* Marquee Track */}
           <div className="relative flex-1 overflow-hidden">

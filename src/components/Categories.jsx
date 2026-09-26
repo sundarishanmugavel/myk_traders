@@ -1,11 +1,19 @@
 import React from 'react';
-import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, Sun, Sliders } from 'lucide-react';
+import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, Sun, Sliders, PhoneCall } from 'lucide-react';
 import product1Img from '../assets/ww-new.png';
 import product2Img from '../assets/cctv.png';
 import product3Img from '../assets/inverter.png';
 import product4Img from '../assets/solar panel.png';
 import product5Img from '../assets/water motor.png';
 import product6Img from '../assets/tank.png';
+
+// MOBILE ONLY PRODUCT IMAGES (Screen size <= 640px / 425x645)
+import mobProduct1 from '../assets/PRODUCT_1.png';
+import mobProduct2 from '../assets/PRODUCT_2.png';
+import mobProduct3 from '../assets/PRODUCT_3.png';
+import mobProduct4 from '../assets/PRODUCT_4.png';
+import mobProduct5 from '../assets/PRODUCT_5.png';
+import mobWaterSensor from '../assets/water_sensor.png';
 
 // BRAND LOGO IMAGE ASSETS
 import aquaguardLogo from '../assets/AQUAGUARD.png';
@@ -17,12 +25,12 @@ import ashirvadLogo from '../assets/ashirvad.png';
 import havellsLogo from '../assets/havells.png';
 
 const PRODUCTS_GRID = [
-  { id: 1, title: 'Water Purifiers', image: product1Img },
-  { id: 2, title: 'CCTV & Surveillance', image: product2Img },
-  { id: 3, title: 'Inverters & Batteries', image: product3Img },
-  { id: 4, title: 'Solar Solutions', image: product4Img },
-  { id: 5, title: 'Water Motors', image: product5Img },
-  { id: 6, title: 'Tank Automation', image: product6Img },
+  { id: 1, title: 'Water Purifiers', image: product1Img, mobImage: mobProduct1 },
+  { id: 2, title: 'CCTV & Surveillance', image: product2Img, mobImage: mobProduct2 },
+  { id: 3, title: 'Inverters & Batteries', image: product3Img, mobImage: mobProduct3 },
+  { id: 4, title: 'Solar Solutions', image: product4Img, mobImage: mobProduct4 },
+  { id: 5, title: 'Water Motors', image: product5Img, mobImage: mobProduct5 },
+  { id: 6, title: 'Tank Automation', image: product6Img, mobImage: mobWaterSensor },
 ];
 
 const BRAND_LOGOS = [
@@ -37,12 +45,12 @@ const BRAND_LOGOS = [
 
 export default function Categories() {
   return (
-    <section id="categories" className="py-10 md:py-14 bg-white text-slate-900 border-b border-slate-200/50 relative overflow-hidden">
+    <section id="categories" className="py-6 md:py-10 bg-white text-slate-900 border-b border-slate-200/50 relative overflow-hidden">
       {/* Background Ambient Glow Accents */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-red-500/5 rounded-full filter blur-3xl pointer-events-none -translate-y-1/2" />
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px] space-y-8 relative z-10">
+      <div className="w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-4 xl:px-[25px] space-y-8 relative z-10">
 
         {/* SECTION HEADER CENTERED MATCHING REFERENCE DESIGN */}
         <div className="relative text-center space-y-1.5 pb-1">
@@ -63,96 +71,142 @@ export default function Categories() {
           </p>
         </div>
 
-        {/* SINGLE SCREEN BENTO BOX PRODUCT GRID (4 COLUMNS x 2 ROWS ON DESKTOP) */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5">
+        {/* SINGLE SCREEN BENTO BOX PRODUCT GRID (2 COLUMNS ON TABLET 768-1024px, 4 COLUMNS ON DESKTOP 1280px+) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-4.5 md:gap-5 xl:gap-4.5 tablet-2col-grid">
 
-          {/* 1. Water Purifiers (Tall card spanning 2 rows on desktop) */}
+          {/* 1. Water Purifiers */}
           <a
             href="#products"
-            className="lg:col-span-1 lg:row-span-2 group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-64 sm:h-72 md:h-80 lg:h-auto"
+            className="col-span-1 row-span-1 xl:col-span-1 xl:row-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-56 xl:h-auto"
           >
             <img
               src={product1Img}
               alt="Water Purifiers"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobProduct1}
+              alt="Water Purifiers"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 2. CCTV & Surveillance */}
           <a
             href="#products"
-            className="group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-44 sm:h-48 md:h-52 lg:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
           >
             <img
               src={product2Img}
               alt="CCTV & Surveillance"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobProduct2}
+              alt="CCTV & Surveillance"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 3. Inverters & Batteries */}
           <a
             href="#products"
-            className="group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-44 sm:h-48 md:h-52 lg:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
           >
             <img
               src={product3Img}
               alt="Inverters & Batteries"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobProduct3}
+              alt="Inverters & Batteries"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 4. Solar Solutions */}
           <a
             href="#products"
-            className="group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-44 sm:h-48 md:h-52 lg:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
           >
             <img
               src={product4Img}
               alt="Solar Solutions"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobProduct4}
+              alt="Solar Solutions"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 5. Water Motors */}
           <a
             href="#products"
-            className="group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-44 sm:h-48 md:h-52 lg:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
           >
             <img
               src={product5Img}
               alt="Water Motors"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobProduct5}
+              alt="Water Motors"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
-          {/* 6. Tank Automation (Wide banner spanning 2 columns in Row 2) */}
+          {/* 6. Tank Automation */}
           <a
             href="#products"
-            className="md:col-span-2 lg:col-span-2 group block relative rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-44 sm:h-48 md:h-52 lg:h-52"
+            className="col-span-1 row-span-1 md:col-span-1 xl:col-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
           >
             <img
               src={product6Img}
               alt="Tank Automation"
-              className="w-full h-full object-cover rounded-3xl mx-auto"
+              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobWaterSensor}
+              alt="Tank Automation"
+              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
         </div>
 
         {/* BRANDS WE WORK WITH INFINITE MARQUEE SECTION */}
-        <div className="pt-4 pb-6 space-y-5 text-center overflow-hidden">
-          <div className="space-y-2">
-            <div className="flex items-center justify-center gap-3.5 sm:gap-5">
-              <div className="w-12 sm:w-16 md:w-20 h-[3px] bg-[#D9232D] rounded-full"></div>
-              <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold uppercase tracking-widest text-[#0B1B3D]">
+        <div className="pt-6 pb-6 space-y-4 text-center overflow-hidden">
+          <div className="space-y-2 max-w-3xl mx-auto px-4">
+            
+            {/* Top Badge with Red Flanking Lines */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
+              <div className="w-10 sm:w-14 md:w-16 h-[2px] bg-[#D9232D]"></div>
+              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] text-[#0B1B3D]">
                 BRANDS WE WORK WITH
               </span>
-              <div className="w-12 sm:w-16 md:w-20 h-[3px] bg-[#D9232D] rounded-full"></div>
+              <div className="w-10 sm:w-14 md:w-16 h-[2px] bg-[#D9232D]"></div>
             </div>
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 font-medium">
-              Trusted names. Genuine products.
-            </p>
+
+            {/* Main Bold Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0B1B3D]">
+              TRUSTED BRANDS. <span className="text-[#D9232D]">GENUINE PRODUCTS.</span>
+            </h2>
+
+            {/* Sub-categories with Red Bullets */}
+            <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3 text-slate-500 text-sm sm:text-base font-medium pt-1">
+              <span>Water</span>
+              <span className="text-[#D9232D] font-bold text-xs sm:text-sm">•</span>
+              <span>Power</span>
+              <span className="text-[#D9232D] font-bold text-xs sm:text-sm">•</span>
+              <span>Security</span>
+              <span className="text-[#D9232D] font-bold text-xs sm:text-sm">•</span>
+              <span>Solar</span>
+            </div>
+
           </div>
 
           {/* INFINITE MARQUEE TICKER ROW */}
@@ -174,11 +228,124 @@ export default function Categories() {
           </div>
         </div>
 
-        {/* BOTTOM NEED HELP CHOOSING / EXPERT ADVICE BANNER (CLEAN & CRISP DESIGN) */}
-        <div className="rounded-2xl sm:rounded-3xl p-6 sm:p-7 lg:px-9 lg:py-6.5 bg-gradient-to-r from-[#FFF2F2] via-[#FFF6F6] to-[#FFEAEA] border border-[#FFDADA] shadow-xs flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        {/* ========================================================================= */}
+        {/* 1. SPECIFIC 768px & 1024px SCREEN SIZE BANNER (FOR 768px - 1279px SCREEN WIDTH) */}
+        {/* ========================================================================= */}
+        <div className="hidden md:flex xl:hidden rounded-3xl p-3.5 md:px-4 md:py-3.5 lg:px-6 lg:py-5 bg-gradient-to-r from-[#FFF0F2] via-[#FFF5F6] to-[#FFEBEF] border border-[#FFD8E0] shadow-xs items-center justify-between gap-2 md:gap-2.5 lg:gap-4 relative overflow-hidden">
+          
+          {/* Left Block: Red Headset Circle + Title & Subtitle (Two-line subtitle) */}
+          <div className="flex items-center gap-2 md:gap-2.5 lg:gap-3 z-10 shrink-0">
+            <div className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-[#E50914] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/25">
+              <Headset size={20} strokeWidth={2.2} className="md:hidden" />
+              <Headset size={22} strokeWidth={2.2} className="hidden md:block lg:hidden" />
+              <Headset size={24} strokeWidth={2.2} className="hidden lg:block" />
+            </div>
 
-          {/* Left Block: Red Headset Circle + Title & Subtitle */}
-          <div className="flex items-center gap-4 sm:gap-5 z-10 w-full lg:w-auto justify-center lg:justify-start">
+            <div className="space-y-0.5 text-left">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3.5 h-[2px] bg-[#E50914] rounded-full"></div>
+                <span className="text-[9px] md:text-[9.5px] lg:text-[10px] font-bold text-slate-500 tracking-wider uppercase">
+                  NEED HELP CHOOSING?
+                </span>
+              </div>
+              <h3 className="text-sm md:text-base lg:text-xl font-black text-[#0B1B3D] tracking-tight leading-tight">
+                Talk to our <span className="text-[#E50914]">experts.</span>
+              </h3>
+              <p className="text-[9.5px] md:text-[10px] lg:text-[11px] text-slate-500 font-medium leading-snug">
+                Get the right solution<br />for your home or business.
+              </p>
+            </div>
+          </div>
+
+          <div className="w-[1px] h-10 md:h-12 lg:h-14 bg-red-200/60 shrink-0"></div>
+
+          {/* Center Block: 4 Feature Circles with Vertical Dividers */}
+          <div className="relative z-10 flex items-center justify-center gap-1.5 md:gap-2 lg:gap-3 shrink-0">
+
+            {/* 1. Water Solutions */}
+            <div className="flex flex-col items-center gap-1 text-center px-0.5">
+              <div className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full bg-blue-100/70 text-[#0084FF] flex items-center justify-center shadow-xs">
+                <Droplets size={15} strokeWidth={2.2} className="md:hidden" />
+                <Droplets size={16} strokeWidth={2.2} className="hidden md:block lg:hidden" />
+                <Droplets size={18} strokeWidth={2.2} className="hidden lg:block" />
+              </div>
+              <span className="text-[9.5px] md:text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                Water<br />Solutions
+              </span>
+            </div>
+
+            <div className="w-[1px] h-7 md:h-8 lg:h-9 bg-red-200/60"></div>
+
+            {/* 2. Power Backup */}
+            <div className="flex flex-col items-center gap-1 text-center px-0.5">
+              <div className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full bg-red-100/70 text-[#E31B23] flex items-center justify-center shadow-xs">
+                <Zap size={15} strokeWidth={2.2} className="md:hidden" />
+                <Zap size={16} strokeWidth={2.2} className="hidden md:block lg:hidden" />
+                <Zap size={18} strokeWidth={2.2} className="hidden lg:block" />
+              </div>
+              <span className="text-[9.5px] md:text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                Power<br />Backup
+              </span>
+            </div>
+
+            <div className="w-[1px] h-7 md:h-8 lg:h-9 bg-red-200/60"></div>
+
+            {/* 3. Security Systems */}
+            <div className="flex flex-col items-center gap-1 text-center px-0.5">
+              <div className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full bg-emerald-100/70 text-[#10B981] flex items-center justify-center shadow-xs">
+                <ShieldCheck size={15} strokeWidth={2.2} className="md:hidden" />
+                <ShieldCheck size={16} strokeWidth={2.2} className="hidden md:block lg:hidden" />
+                <ShieldCheck size={18} strokeWidth={2.2} className="hidden lg:block" />
+              </div>
+              <span className="text-[9.5px] md:text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                Security<br />Systems
+              </span>
+            </div>
+
+            <div className="w-[1px] h-7 md:h-8 lg:h-9 bg-red-200/60"></div>
+
+            {/* 4. Automation Solutions */}
+            <div className="flex flex-col items-center gap-1 text-center px-0.5">
+              <div className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full bg-orange-100/70 text-[#F97316] flex items-center justify-center shadow-xs">
+                <Settings size={15} strokeWidth={2.2} className="md:hidden" />
+                <Settings size={16} strokeWidth={2.2} className="hidden md:block lg:hidden" />
+                <Settings size={18} strokeWidth={2.2} className="hidden lg:block" />
+              </div>
+              <span className="text-[9.5px] md:text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                Automation<br />Solutions
+              </span>
+            </div>
+
+          </div>
+
+          <div className="w-[1px] h-10 md:h-12 lg:h-14 bg-red-200/60 shrink-0"></div>
+
+          {/* Right Block: Red Capsule Button with Phone Icon inside White Circle */}
+          <div className="flex items-center justify-end z-10 shrink-0">
+            <a
+              href="tel:06380073771"
+              className="inline-flex items-center gap-1.5 md:gap-2 lg:gap-2.5 bg-gradient-to-r from-[#FF0A26] to-[#DC2626] hover:from-[#E31B23] hover:to-[#B91C1C] text-white text-[9.5px] md:text-[10.5px] lg:text-xs font-black uppercase tracking-wider pl-1.5 pr-3 md:pl-2 md:pr-4 lg:pr-5 py-1.5 md:py-2 rounded-full shadow-md shadow-red-500/30 hover:shadow-lg hover:shadow-red-500/40 transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer shrink-0"
+            >
+              <div className="w-5.5 h-5.5 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 rounded-full bg-white text-red-600 flex items-center justify-center shrink-0 shadow-xs">
+                <PhoneCall size={11} strokeWidth={2.5} className="md:hidden" />
+                <PhoneCall size={12} strokeWidth={2.5} className="hidden md:block lg:hidden" />
+                <PhoneCall size={14} strokeWidth={2.5} className="hidden lg:block" />
+              </div>
+              <span>TALK TO AN EXPERT</span>
+              <ArrowRight size={13} strokeWidth={2.8} className="lg:hidden" />
+              <ArrowRight size={14} strokeWidth={2.8} className="hidden lg:block" />
+            </a>
+          </div>
+
+        </div>
+
+        {/* ========================================================================= */}
+        {/* 2. DEFAULT BANNER FOR MOBILE (< 768px) AND LARGE DESKTOP (>= 1280px) */}
+        {/* ========================================================================= */}
+        <div className="flex md:hidden xl:flex rounded-2xl sm:rounded-3xl p-6 sm:p-7 xl:px-9 xl:py-6.5 bg-gradient-to-r from-[#FFF2F2] via-[#FFF6F6] to-[#FFEAEA] border border-[#FFDADA] shadow-xs flex-col xl:flex-row items-center justify-between gap-6 relative overflow-hidden">
+
+          {/* Left Block */}
+          <div className="flex items-center gap-4 sm:gap-5 z-10 w-full xl:w-auto justify-center xl:justify-start">
             <div className="w-14 h-14 sm:w-[3.6rem] sm:h-[3.6rem] rounded-full bg-[#E31B23] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/20">
               <Headset size={28} strokeWidth={2.2} />
             </div>
@@ -196,10 +363,8 @@ export default function Categories() {
             </div>
           </div>
 
-          {/* Center Block: 4 Distinct Color Icons with Vertical Divider Lines */}
-          <div className="relative z-10 flex items-center justify-center gap-3 sm:gap-6 flex-wrap lg:flex-nowrap">
-
-            {/* 1. Water Solutions (Vibrant Blue Droplets) */}
+          {/* Center Block */}
+          <div className="relative z-10 flex items-center justify-center gap-3 sm:gap-6 flex-wrap xl:flex-nowrap">
             <div className="flex flex-col items-center gap-1.5 text-center px-1">
               <Droplets size={26} className="text-[#0084FF] fill-[#0084FF]/15" strokeWidth={2.2} />
               <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
@@ -209,7 +374,6 @@ export default function Categories() {
 
             <div className="hidden sm:block w-[1px] h-8 bg-red-200/70"></div>
 
-            {/* 2. Power Backup (Vibrant Red Lightning) */}
             <div className="flex flex-col items-center gap-1.5 text-center px-1">
               <Zap size={26} className="text-[#E31B23] fill-[#E31B23]" strokeWidth={2} />
               <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
@@ -219,7 +383,6 @@ export default function Categories() {
 
             <div className="hidden sm:block w-[1px] h-8 bg-red-200/70"></div>
 
-            {/* 3. Security Systems (Vibrant Green Shield) */}
             <div className="flex flex-col items-center gap-1.5 text-center px-1">
               <ShieldCheck size={26} className="text-[#10B981] fill-[#10B981]/15" strokeWidth={2.2} />
               <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
@@ -229,18 +392,16 @@ export default function Categories() {
 
             <div className="hidden sm:block w-[1px] h-8 bg-red-200/70"></div>
 
-            {/* 4. Automation Solutions (Vibrant Orange Gear) */}
             <div className="flex flex-col items-center gap-1.5 text-center px-1">
               <Settings size={26} className="text-[#F97316] fill-[#F97316]/10" strokeWidth={2.2} />
               <span className="text-xs font-bold text-[#0B1B3D] leading-tight">
                 Automation<br />Solutions
               </span>
             </div>
-
           </div>
 
-          {/* Right Block: Red Capsule Pill Button (Prominent & Larger) */}
-          <div className="flex items-center justify-center lg:justify-end z-10 w-full lg:w-auto shrink-0">
+          {/* Right Block */}
+          <div className="flex items-center justify-center xl:justify-end z-10 w-full xl:w-auto shrink-0">
             <a
               href="#contact"
               className="inline-flex items-center gap-3 bg-[#FF0A26] hover:bg-[#E31B23] text-white text-xs sm:text-sm font-black uppercase tracking-wider px-8 sm:px-9 py-4 sm:py-4.5 rounded-full shadow-lg shadow-red-500/30 hover:shadow-xl hover:shadow-red-500/40 transition-all transform hover:-translate-y-0.5"
