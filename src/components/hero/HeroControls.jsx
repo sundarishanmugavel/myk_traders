@@ -8,36 +8,36 @@ const TICKER_ITEMS = [
   { text: 'Talk to an Expert: 063800 73771', icon: PhoneCall, color: 'text-purple-600' },
 ];
 
-export default function HeroControls({ onPrev, onNext }) {
+export default function HeroControls({ onPrev, onNext, currentIdx = 0, totalPages = 4, onSelectPage }) {
   return (
-    <div className="w-full flex flex-col items-end pointer-events-none pb-0 px-0">
+    <div className="w-full flex flex-col pointer-events-none pb-0 px-0">
       
-      {/* FLOATING NAVIGATION ARROWS (COMPACT SIZE) */}
-      <div className="pointer-events-auto w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px] flex items-center justify-end mb-2">
-        {/* Navigation Buttons */}
+      {/* NAVIGATION CONTROLS (RIGHT) */}
+      <div className="pointer-events-auto w-full max-w-[1380px] mx-auto px-4 sm:px-8 flex items-end justify-end mb-4">
+
+        {/* Floating Navigation Controls (Bottom Right) */}
         <div className="flex items-center gap-2">
           <button
             onClick={onPrev}
-            className="group relative w-9 h-9 rounded-full bg-white hover:bg-slate-900 hover:text-white backdrop-blur-md border border-slate-200 text-slate-900 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-md hover:shadow-lg"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white hover:bg-slate-100 text-slate-800 flex items-center justify-center border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
             aria-label="Previous Page"
           >
-            <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            <ChevronLeft size={16} strokeWidth={2.5} />
           </button>
-
           <button
             onClick={onNext}
-            className="group relative w-9 h-9 rounded-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-md shadow-cyan-600/30"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0066FF] hover:bg-blue-700 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 transition-all active:scale-95 cursor-pointer"
             aria-label="Next Page"
           >
-            <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            <ChevronRight size={16} strokeWidth={2.5} />
           </button>
         </div>
+
       </div>
 
-      {/* MARQUEE TICKER BAR (ZERO BORDER-RADIUS + STYLISH DESIGN ACCENTS) */}
+      {/* MARQUEE TICKER BAR */}
       <div className="w-full pointer-events-auto relative bg-white/95 backdrop-blur-md border-y border-slate-200/90 rounded-none py-2 px-0 overflow-hidden select-none shadow-md flex items-center">
         <div className="w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] lg:px-[25px]">
-          {/* Marquee Track */}
           <div className="relative flex-1 overflow-hidden">
             <div className="animate-marquee flex items-center gap-8 whitespace-nowrap text-xs sm:text-sm font-semibold text-slate-800">
               {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => {
@@ -58,6 +58,7 @@ export default function HeroControls({ onPrev, onNext }) {
     </div>
   );
 }
+
 
 
 
