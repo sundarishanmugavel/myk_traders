@@ -93,30 +93,138 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
 
     if (isMobile) {
       // =========================================================================
-      // MOBILE PORTRAIT CANVAS TEXTURE (MATCHING VERCEL MOBILE SCREENSHOT)
+      // MOBILE PORTRAIT CANVAS TEXTURE (CENTERED VERTICAL STACK - EXTRA LARGE HERO CONTENT)
+      // Desktop left side colors used throughout:
+      // - Background: Pure White #FFFFFF with soft radial accent glow
+      // - Badge: rgba(11, 27, 61, 0.07) fill, rgba(11, 27, 61, 0.2) stroke, #0B1B3D text
+      // - Headline: Single Line! Line 0 #0B1B3D, Line 1 #EF1C2D (Desktop Red) - Extra Large 96px
+      // - Subtitle: #1E293B (Extra Large 42px font)
+      // - Product Image: Centered, enlarged 42% max height
+      // - Characteristics/Specs: Horizontal row below image with #EF1C2D checkmarks (Extra Large 40px font)
+      // - CTA Button: Red Gradient (#E50914 -> #DC2626 -> #991B1B) (Extra Large 114px height)
+      // - Trust Wordings: #0B1B3D numbers (60px font) + #334155 labels (30px font)
       // =========================================================================
-      
-      const leftMargin = 75;
-      const maxLeftContentW = width * 0.47 - leftMargin; // ~890px
-      const rightCenterX = width * 0.76; // ~1556px
-      const topStartY = height * 0.12;
 
-      // Water Splash Radial Accent Glow on Right Side
+      // Base White Background
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, width, height);
+
+      const centerX = width / 2;
+      const margin = 50;
+      const maxTextW = width - margin * 2;
+
+      // Soft Radial Glow in Center Background
       ctx.save();
-      const glowX = rightCenterX;
-      const glowY = topStartY + (height * 0.28);
-      const glowRadius = width * 0.48;
-      const accentGlow = ctx.createRadialGradient(glowX, glowY, 30, glowX, glowY, glowRadius);
-      accentGlow.addColorStop(0, 'rgba(0, 149, 255, 0.28)');
-      accentGlow.addColorStop(0.55, 'rgba(224, 242, 254, 0.6)');
-      accentGlow.addColorStop(1, '#F8FAFC');
+      const glowRadius = width * 0.65;
+      const accentGlow = ctx.createRadialGradient(centerX, height * 0.4, 30, centerX, height * 0.4, glowRadius);
+      accentGlow.addColorStop(0, pageData.badgeBg ? pageData.badgeBg.replace('0.12', '0.25') : 'rgba(2, 132, 199, 0.22)');
+      accentGlow.addColorStop(0.7, 'rgba(255, 255, 255, 0.85)');
+      accentGlow.addColorStop(1, '#FFFFFF');
       ctx.fillStyle = accentGlow;
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
 
-      // RIGHT SIDE PRODUCT IMAGE STAGE
-      const maxProdW = width * 0.46; // ~940px
-      const maxProdH = height * 0.62; // ~1500px
+      let currentY = height * 0.04;
+
+      // 1. SMALL TEXT LIKE BADGE (CENTERED TOP - EXTRA LARGE 38px)
+      if (pageData.category || pageData.badge) {
+        const badgeText = (pageData.category || pageData.badge).toUpperCase();
+        ctx.save();
+        ctx.font = '800 38px "Plus Jakarta Sans", "Inter", sans-serif';
+        const badgeMetrics = ctx.measureText(badgeText);
+        const padX = 40;
+        const bWidth = badgeMetrics.width + padX * 2;
+        const bHeight = 74;
+        const bX = centerX - bWidth / 2;
+
+        ctx.fillStyle = 'rgba(11, 27, 61, 0.07)';
+        ctx.beginPath();
+        ctx.roundRect(bX, currentY, bWidth, bHeight, 37);
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(11, 27, 61, 0.2)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = '#0B1B3D';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(badgeText, centerX, currentY + bHeight / 2 + 1);
+        ctx.restore();
+
+        currentY += bHeight + 32;
+      }
+
+      // 2. HEADING (SINGLE LINE - EXTRA LARGE 96px DUAL COLOR: Line 0 Navy #0B1B3D, Line 1 Red #EF1C2D)
+      ctx.save();
+      let titleFontSize = 96;
+      ctx.font = `900 ${titleFontSize}px "Plus Jakarta Sans", "Inter", system-ui, sans-serif`;
+      const fullTitleText = pageData.title.replace(/\n/g, ' ');
+
+      // Scale font dynamically if needed so it stays strictly on 1 single line
+      while (ctx.measureText(fullTitleText).width > maxTextW && titleFontSize > 44) {
+        titleFontSize -= 2;
+        ctx.font = `900 ${titleFontSize}px "Plus Jakarta Sans", "Inter", system-ui, sans-serif`;
+      }
+
+      ctx.textBaseline = 'top';
+      const lines = pageData.title.split('\n');
+
+      if (lines.length > 1) {
+        const w0 = ctx.measureText(lines[0] + ' ').width;
+        const w1 = ctx.measureText(lines[1]).width;
+        const totalTitleW = w0 + w1;
+        const startX = centerX - totalTitleW / 2;
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#0B1B3D';
+        ctx.fillText(lines[0] + ' ', startX, currentY);
+
+        ctx.fillStyle = '#EF1C2D';
+        ctx.fillText(lines[1], startX + w0, currentY);
+      } else {
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#0B1B3D';
+        ctx.fillText(pageData.title, centerX, currentY);
+      }
+      ctx.restore();
+
+      currentY += titleFontSize + 28;
+
+      // 3. WORDINGS / SUBTITLE (CENTERED - EXTRA LARGE 42px)
+      ctx.save();
+      ctx.font = '600 42px "Inter", system-ui, sans-serif';
+      ctx.fillStyle = '#1E293B';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+
+      const subWords = pageData.subtitle.split(' ');
+      let subLine = '';
+      const subLines = [];
+
+      for (let n = 0; n < subWords.length; n++) {
+        const testLine = subLine + subWords[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxTextW && n > 0) {
+          subLines.push(subLine.trim());
+          subLine = subWords[n] + ' ';
+        } else {
+          subLine = testLine;
+        }
+      }
+      if (subLine.trim()) subLines.push(subLine.trim());
+
+      subLines.forEach((l) => {
+        ctx.fillText(l, centerX, currentY);
+        currentY += 56;
+      });
+      ctx.restore();
+
+      currentY += 28;
+
+      // 4. PRODUCT IMAGE (CENTERED BELOW WORDINGS - EXTRA LARGE 42% HEIGHT)
+      const maxProdW = width * 0.88;
+      const maxProdH = height * 0.42;
       let prodW = maxProdW;
       let prodH = (img.height / img.width) * prodW;
 
@@ -125,175 +233,219 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
         prodW = (img.width / img.height) * prodH;
       }
 
-      const prodX = rightCenterX - prodW / 2;
-      const prodY = topStartY + 15; // Top aligned with headline
+      const prodX = centerX - prodW / 2;
+      const prodY = currentY;
 
-      // Water Pedestal Disc Graphic on Right Side
+      // Floor Shadow under Product
       ctx.save();
-      const shadowX = rightCenterX;
-      const shadowY = prodY + prodH * 0.94;
-      const shadowRx = prodW * 0.46;
-      const shadowRy = 55;
+      const shadowX = centerX;
+      const shadowY = prodY + prodH * 0.95;
+      const shadowRx = prodW * 0.44;
+      const shadowRy = 52;
 
-      const outerShadow = ctx.createRadialGradient(shadowX, shadowY, 10, shadowX, shadowY, shadowRx);
-      outerShadow.addColorStop(0, 'rgba(0, 102, 255, 0.25)');
-      outerShadow.addColorStop(0.6, 'rgba(186, 230, 253, 0.15)');
-      outerShadow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      const outerShadow = ctx.createRadialGradient(shadowX, shadowY, 8, shadowX, shadowY, shadowRx);
+      outerShadow.addColorStop(0, 'rgba(15, 23, 42, 0.22)');
+      outerShadow.addColorStop(0.5, 'rgba(15, 23, 42, 0.08)');
+      outerShadow.addColorStop(1, 'rgba(15, 23, 42, 0)');
       ctx.fillStyle = outerShadow;
       ctx.beginPath();
       ctx.ellipse(shadowX, shadowY, shadowRx, shadowRy, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
-      // Render Product Image on Right Side
+      // Render Product Image
       ctx.save();
       ctx.drawImage(img, prodX, prodY, prodW, prodH);
       ctx.restore();
 
-      // LEFT SIDE EDITORIAL TYPOGRAPHY
-      let currentY = topStartY;
+      currentY = prodY + prodH + 38;
 
-      // 1. Top Category Badge Pill (#E0F2FE Light Blue)
-      if (pageData.category || pageData.badge) {
-        const badgeText = (pageData.category || pageData.badge).toUpperCase();
-        ctx.save();
-        ctx.font = '800 32px "Plus Jakarta Sans", "Inter", sans-serif';
-        const badgeMetrics = ctx.measureText(badgeText);
-        const padX = 32;
-        const bWidth = badgeMetrics.width + padX * 2;
-        const bHeight = 64;
-
-        ctx.fillStyle = '#E0F2FE';
-        ctx.beginPath();
-        ctx.roundRect(leftMargin, currentY, bWidth, bHeight, 32);
-        ctx.fill();
-
-        ctx.fillStyle = '#0284C7';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(badgeText, leftMargin + padX, currentY + bHeight / 2 + 2);
-        ctx.restore();
-
-        currentY += bHeight + 32;
-      }
-
-      // 2. Main Headline (Line 1: Deep Navy #0B1B3D, Line 2: Electric Blue #0066FF)
-      ctx.save();
-      ctx.font = '900 88px "Plus Jakarta Sans", "Inter", system-ui, sans-serif';
-      ctx.textBaseline = 'top';
-
-      const lines = pageData.title.split('\n');
-      lines.forEach((line, lineIdx) => {
-        ctx.fillStyle = lineIdx === 1 ? '#0066FF' : '#0B1B3D';
-        ctx.fillText(line, leftMargin, currentY);
-        currentY += 100;
-      });
-      ctx.restore();
-
-      currentY += 12;
-
-      // 3. Subtitle Paragraph
-      ctx.save();
-      ctx.font = '600 32px "Inter", system-ui, sans-serif';
-      ctx.fillStyle = '#475569';
-      ctx.textBaseline = 'top';
-
-      const subWords = pageData.subtitle.split(' ');
-      let subLine = '';
-      let subY = currentY;
-
-      for (let n = 0; n < subWords.length; n++) {
-        const testLine = subLine + subWords[n] + ' ';
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxLeftContentW && n > 0) {
-          ctx.fillText(subLine, leftMargin, subY);
-          subLine = subWords[n] + ' ';
-          subY += 48;
-        } else {
-          subLine = testLine;
-        }
-      }
-      ctx.fillText(subLine, leftMargin, subY);
-      ctx.restore();
-
-      currentY = subY + 45;
-
-      // 4. Specs Checklist with Soft Blue Icon Circles
+      // 5. CHARACTERISTICS / SPECS (HORIZONTALLY BELOW IMAGE - EXTRA LARGE 40px FONT)
       if (pageData.specs && pageData.specs.length > 0) {
+        const specsList = pageData.specs.slice(0, 3);
         ctx.save();
-        pageData.specs.slice(0, 3).forEach((spec, specIdx) => {
-          const circleX = leftMargin + 28;
-          const circleY = currentY + 28;
-          const circleR = 28;
+        ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
 
-          // Draw Soft Blue Circle Spec Icon
-          drawSpecIcon(ctx, spec, specIdx, circleX, circleY, circleR);
-
-          // Spec Label Text
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'middle';
-          ctx.font = '700 32px "Plus Jakarta Sans", "Inter", sans-serif';
-          ctx.fillStyle = '#0B1B3D';
-          ctx.fillText(spec, leftMargin + 72, circleY);
-
-          currentY += 68;
+        // Measure items to lay out in horizontal row(s)
+        const measuredItems = specsList.map((spec) => {
+          const textW = ctx.measureText(spec).width;
+          return { spec, textW, totalW: textW + 76 };
         });
+
+        const gapBetween = 48;
+        const totalRowW = measuredItems.reduce((acc, item) => acc + item.totalW, 0) + (measuredItems.length - 1) * gapBetween;
+
+        if (totalRowW <= maxTextW) {
+          // Fit all in 1 horizontal row centered
+          let startX = centerX - totalRowW / 2;
+          measuredItems.forEach((item) => {
+            const iconCx = startX + 28;
+            const iconCy = currentY + 28;
+
+            // Red Circle with White Checkmark
+            ctx.fillStyle = '#EF1C2D';
+            ctx.beginPath();
+            ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 30px "Inter", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✓', iconCx, iconCy + 1);
+
+            // Spec text
+            ctx.textAlign = 'left';
+            ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+            ctx.fillStyle = '#0B1B3D';
+            ctx.fillText(item.spec, startX + 72, iconCy);
+
+            startX += item.totalW + gapBetween;
+          });
+          currentY += 74;
+        } else {
+          // Wrap into 2 horizontal rows centered if text is wide
+          const row1 = measuredItems.slice(0, 2);
+          const row2 = measuredItems.slice(2);
+
+          const r1W = row1.reduce((acc, item) => acc + item.totalW, 0) + (row1.length - 1) * gapBetween;
+          let startX1 = centerX - r1W / 2;
+          row1.forEach((item) => {
+            const iconCx = startX1 + 28;
+            const iconCy = currentY + 28;
+
+            ctx.fillStyle = '#EF1C2D';
+            ctx.beginPath();
+            ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 30px "Inter", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✓', iconCx, iconCy + 1);
+
+            ctx.textAlign = 'left';
+            ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+            ctx.fillStyle = '#0B1B3D';
+            ctx.fillText(item.spec, startX1 + 72, iconCy);
+
+            startX1 += item.totalW + gapBetween;
+          });
+          currentY += 70;
+
+          if (row2.length > 0) {
+            const r2W = row2.reduce((acc, item) => acc + item.totalW, 0) + (row2.length - 1) * gapBetween;
+            let startX2 = centerX - r2W / 2;
+            row2.forEach((item) => {
+              const iconCx = startX2 + 28;
+              const iconCy = currentY + 28;
+
+              ctx.fillStyle = '#EF1C2D';
+              ctx.beginPath();
+              ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+              ctx.fill();
+
+              ctx.fillStyle = '#FFFFFF';
+              ctx.font = '900 30px "Inter", sans-serif';
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText('✓', iconCx, iconCy + 1);
+
+              ctx.textAlign = 'left';
+              ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+              ctx.fillStyle = '#0B1B3D';
+              ctx.fillText(item.spec, startX2 + 72, iconCy);
+
+              startX2 += item.totalW + gapBetween;
+            });
+            currentY += 70;
+          }
+        }
         ctx.restore();
-        currentY += 14;
+        currentY += 18;
       }
 
-      // 5. Action CTA Button (Electric Blue #0066FF Stadium Pill)
-      const buttonY = currentY + 18;
-      const btnW = Math.min(560, maxLeftContentW);
-      const btnH = 92;
+      // 6. ACTION CTA BUTTON (RED GRADIENT STADIUM PILL - EXTRA LARGE 114px HEIGHT)
+      const buttonY = currentY + 24;
+      const btnW = Math.min(660, maxTextW);
+      const btnH = 114;
       const pillRadius = btnH / 2;
+      const btnX = centerX - btnW / 2;
 
       ctx.save();
-      ctx.shadowColor = 'rgba(0, 102, 255, 0.38)';
-      ctx.shadowBlur = 28;
-      ctx.shadowOffsetY = 10;
+      ctx.shadowColor = 'rgba(220, 38, 38, 0.45)';
+      ctx.shadowBlur = 34;
+      ctx.shadowOffsetY = 14;
 
-      const btnGrad = ctx.createLinearGradient(leftMargin, buttonY, leftMargin + btnW, buttonY + btnH);
-      btnGrad.addColorStop(0, '#0066FF');
-      btnGrad.addColorStop(1, '#0052CC');
+      const btnGrad = ctx.createLinearGradient(btnX, buttonY, btnX + btnW, buttonY + btnH);
+      btnGrad.addColorStop(0, '#E50914');
+      btnGrad.addColorStop(0.5, '#DC2626');
+      btnGrad.addColorStop(1, '#991B1B');
       ctx.fillStyle = btnGrad;
       ctx.beginPath();
-      ctx.roundRect(leftMargin, buttonY, btnW, btnH, pillRadius);
+      ctx.roundRect(btnX, buttonY, btnW, btnH, pillRadius);
       ctx.fill();
       ctx.restore();
 
       // CTA Text + Arrow →
       ctx.save();
-      ctx.font = '800 30px "Plus Jakarta Sans", "Inter", sans-serif';
+      ctx.font = '800 40px "Plus Jakarta Sans", "Inter", sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`${(pageData.buttonText || 'DISCOVER OUR SOLUTIONS').toUpperCase()}`, leftMargin + 36, buttonY + btnH / 2 + 2);
+      ctx.fillText(`${(pageData.buttonText || 'DISCOVER OUR SOLUTIONS').toUpperCase()}`, btnX + 54, buttonY + btnH / 2 + 1);
 
-      ctx.font = '800 36px "Inter", sans-serif';
-      ctx.fillText('→', leftMargin + btnW - 54, buttonY + btnH / 2 + 2);
+      ctx.font = '800 44px "Inter", sans-serif';
+      ctx.fillText('→', btnX + btnW - 68, buttonY + btnH / 2 + 1);
       ctx.restore();
 
-      // 6. Trust Wordings / Stat Counters (Drawn directly on canvas, NO WHITE FLOATING CARD!)
-      const statsY = buttonY + btnH + 45;
+      currentY = buttonY + btnH + 46;
+
+      // 7. TRUST WORDINGS (NEXT LINE BELOW CHARACTERISTICS & CTA - EXTRA LARGE 60px NUMBERS)
       ctx.save();
       const stats = pageData.stats || [
-        { num: '15,000+', label: 'Customers Served' },
-        { num: '10+', label: 'Years Experience' },
+        { num: '15,000+', label: 'Happy Homes' },
+        { num: '24/7', label: 'On-Site Service' },
+        { num: '100%', label: 'Genuine Parts' },
         { num: '4.9★', label: 'Customer Rating' },
       ];
 
-      const colXs = [leftMargin, leftMargin + 280, leftMargin + 540];
+      // Measure stat columns to center row perfectly
+      ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
+      const statColWidths = stats.slice(0, 3).map((st) => {
+        const numW = ctx.measureText(st.num).width;
+        ctx.font = '600 30px "Inter", sans-serif';
+        const lblW = ctx.measureText(st.label).width;
+        ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
+        return Math.max(numW, lblW, 200);
+      });
+
+      const colGap = 56;
+      const totalStatsW = statColWidths.reduce((a, b) => a + b, 0) + (statColWidths.length - 1) * colGap;
+      let currStatX = centerX - totalStatsW / 2;
 
       stats.slice(0, 3).forEach((st, idx) => {
-        const posX = colXs[idx];
+        const colW = statColWidths[idx];
+        const colCenterX = currStatX + colW / 2;
 
-        ctx.font = '900 46px "Plus Jakarta Sans", sans-serif';
+        ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = '#0B1B3D';
+        ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
-        ctx.fillText(st.num, posX, statsY);
+        ctx.fillText(st.num, colCenterX, currentY);
 
-        ctx.font = '600 22px "Inter", sans-serif';
-        ctx.fillStyle = '#64748B';
-        ctx.fillText(st.label, posX, statsY + 54);
+        ctx.font = '600 30px "Inter", sans-serif';
+        ctx.fillStyle = '#334155';
+        ctx.textAlign = 'center';
+        ctx.fillText(st.label, colCenterX, currentY + 70);
+
+        currStatX += colW + colGap;
+
+        // Vertical divider line between stats
+        if (idx < 2) {
+          ctx.fillStyle = '#CBD5E1';
+          ctx.fillRect(currStatX - colGap / 2 - 1, currentY + 10, 3, 86);
+        }
       });
       ctx.restore();
 
