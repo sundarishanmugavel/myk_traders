@@ -93,16 +93,16 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
 
     if (isMobile) {
       // =========================================================================
-      // MOBILE PORTRAIT CANVAS TEXTURE (CENTERED VERTICAL STACK - EXTRA LARGE HERO CONTENT)
+      // MOBILE PORTRAIT CANVAS TEXTURE (CENTERED VERTICAL STACK - ULTRA MAX HERO CONTENT)
       // Desktop left side colors used throughout:
       // - Background: Pure White #FFFFFF with soft radial accent glow
-      // - Badge: rgba(11, 27, 61, 0.07) fill, rgba(11, 27, 61, 0.2) stroke, #0B1B3D text
-      // - Headline: Single Line! Line 0 #0B1B3D, Line 1 #EF1C2D (Desktop Red) - Extra Large 96px
-      // - Subtitle: #1E293B (Extra Large 42px font)
-      // - Product Image: Centered, enlarged 42% max height
-      // - Characteristics/Specs: Horizontal row below image with #EF1C2D checkmarks (Extra Large 40px font)
-      // - CTA Button: Red Gradient (#E50914 -> #DC2626 -> #991B1B) (Extra Large 114px height)
-      // - Trust Wordings: #0B1B3D numbers (60px font) + #334155 labels (30px font)
+      // - Badge: rgba(11, 27, 61, 0.07) fill, rgba(11, 27, 61, 0.2) stroke, #0B1B3D text (48px font)
+      // - Headline: Single Line! Line 0 #0B1B3D, Line 1 #EF1C2D (Desktop Red) - Ultra Max 118px font
+      // - Subtitle: #1E293B (Ultra Max 50px font)
+      // - Product Image: Centered, enlarged 46% max height
+      // - Characteristics/Specs: Horizontal row below image with #EF1C2D checkmarks (48px font)
+      // - CTA Button: Red Gradient (#E50914 -> #DC2626 -> #991B1B) (132px height)
+      // - Trust Wordings: #0B1B3D numbers (72px font) + #334155 labels (34px font)
       // =========================================================================
 
       // Base White Background
@@ -110,12 +110,12 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       ctx.fillRect(0, 0, width, height);
 
       const centerX = width / 2;
-      const margin = 50;
+      const margin = 40;
       const maxTextW = width - margin * 2;
 
       // Soft Radial Glow in Center Background
       ctx.save();
-      const glowRadius = width * 0.65;
+      const glowRadius = width * 0.7;
       const accentGlow = ctx.createRadialGradient(centerX, height * 0.4, 30, centerX, height * 0.4, glowRadius);
       accentGlow.addColorStop(0, pageData.badgeBg ? pageData.badgeBg.replace('0.12', '0.25') : 'rgba(2, 132, 199, 0.22)');
       accentGlow.addColorStop(0.7, 'rgba(255, 255, 255, 0.85)');
@@ -124,26 +124,26 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       ctx.fillRect(0, 0, width, height);
       ctx.restore();
 
-      let currentY = height * 0.04;
+      let currentY = height * 0.035;
 
-      // 1. SMALL TEXT LIKE BADGE (CENTERED TOP - EXTRA LARGE 38px)
+      // 1. SMALL TEXT LIKE BADGE (CENTERED TOP - ULTRA MAX 48px)
       if (pageData.category || pageData.badge) {
         const badgeText = (pageData.category || pageData.badge).toUpperCase();
         ctx.save();
-        ctx.font = '800 38px "Plus Jakarta Sans", "Inter", sans-serif';
+        ctx.font = '800 48px "Plus Jakarta Sans", "Inter", sans-serif';
         const badgeMetrics = ctx.measureText(badgeText);
-        const padX = 40;
+        const padX = 48;
         const bWidth = badgeMetrics.width + padX * 2;
-        const bHeight = 74;
+        const bHeight = 90;
         const bX = centerX - bWidth / 2;
 
         ctx.fillStyle = 'rgba(11, 27, 61, 0.07)';
         ctx.beginPath();
-        ctx.roundRect(bX, currentY, bWidth, bHeight, 37);
+        ctx.roundRect(bX, currentY, bWidth, bHeight, 45);
         ctx.fill();
 
         ctx.strokeStyle = 'rgba(11, 27, 61, 0.2)';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 3.5;
         ctx.stroke();
 
         ctx.fillStyle = '#0B1B3D';
@@ -152,17 +152,17 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
         ctx.fillText(badgeText, centerX, currentY + bHeight / 2 + 1);
         ctx.restore();
 
-        currentY += bHeight + 32;
+        currentY += bHeight + 36;
       }
 
-      // 2. HEADING (SINGLE LINE - EXTRA LARGE 96px DUAL COLOR: Line 0 Navy #0B1B3D, Line 1 Red #EF1C2D)
+      // 2. HEADING (SINGLE LINE - ULTRA MAX 118px DUAL COLOR: Line 0 Navy #0B1B3D, Line 1 Red #EF1C2D)
       ctx.save();
-      let titleFontSize = 96;
+      let titleFontSize = 118;
       ctx.font = `900 ${titleFontSize}px "Plus Jakarta Sans", "Inter", system-ui, sans-serif`;
       const fullTitleText = pageData.title.replace(/\n/g, ' ');
 
       // Scale font dynamically if needed so it stays strictly on 1 single line
-      while (ctx.measureText(fullTitleText).width > maxTextW && titleFontSize > 44) {
+      while (ctx.measureText(fullTitleText).width > maxTextW && titleFontSize > 48) {
         titleFontSize -= 2;
         ctx.font = `900 ${titleFontSize}px "Plus Jakarta Sans", "Inter", system-ui, sans-serif`;
       }
@@ -189,11 +189,11 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       }
       ctx.restore();
 
-      currentY += titleFontSize + 28;
+      currentY += titleFontSize + 32;
 
-      // 3. WORDINGS / SUBTITLE (CENTERED - EXTRA LARGE 42px)
+      // 3. WORDINGS / SUBTITLE (CENTERED - ULTRA MAX 50px)
       ctx.save();
-      ctx.font = '600 42px "Inter", system-ui, sans-serif';
+      ctx.font = '600 50px "Inter", system-ui, sans-serif';
       ctx.fillStyle = '#1E293B';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
@@ -216,15 +216,15 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
 
       subLines.forEach((l) => {
         ctx.fillText(l, centerX, currentY);
-        currentY += 56;
+        currentY += 66;
       });
       ctx.restore();
 
-      currentY += 28;
+      currentY += 32;
 
-      // 4. PRODUCT IMAGE (CENTERED BELOW WORDINGS - EXTRA LARGE 42% HEIGHT)
-      const maxProdW = width * 0.88;
-      const maxProdH = height * 0.42;
+      // 4. PRODUCT IMAGE (CENTERED BELOW WORDINGS - ULTRA MAX 46% HEIGHT)
+      const maxProdW = width * 0.94;
+      const maxProdH = height * 0.46;
       let prodW = maxProdW;
       let prodH = (img.height / img.width) * prodW;
 
@@ -240,8 +240,8 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       ctx.save();
       const shadowX = centerX;
       const shadowY = prodY + prodH * 0.95;
-      const shadowRx = prodW * 0.44;
-      const shadowRy = 52;
+      const shadowRx = prodW * 0.45;
+      const shadowRy = 58;
 
       const outerShadow = ctx.createRadialGradient(shadowX, shadowY, 8, shadowX, shadowY, shadowRx);
       outerShadow.addColorStop(0, 'rgba(15, 23, 42, 0.22)');
@@ -258,51 +258,51 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       ctx.drawImage(img, prodX, prodY, prodW, prodH);
       ctx.restore();
 
-      currentY = prodY + prodH + 38;
+      currentY = prodY + prodH + 42;
 
-      // 5. CHARACTERISTICS / SPECS (HORIZONTALLY BELOW IMAGE - EXTRA LARGE 40px FONT)
+      // 5. CHARACTERISTICS / SPECS (HORIZONTALLY BELOW IMAGE - ULTRA MAX 48px FONT)
       if (pageData.specs && pageData.specs.length > 0) {
         const specsList = pageData.specs.slice(0, 3);
         ctx.save();
-        ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+        ctx.font = '700 48px "Plus Jakarta Sans", "Inter", sans-serif';
 
         // Measure items to lay out in horizontal row(s)
         const measuredItems = specsList.map((spec) => {
           const textW = ctx.measureText(spec).width;
-          return { spec, textW, totalW: textW + 76 };
+          return { spec, textW, totalW: textW + 90 };
         });
 
-        const gapBetween = 48;
+        const gapBetween = 52;
         const totalRowW = measuredItems.reduce((acc, item) => acc + item.totalW, 0) + (measuredItems.length - 1) * gapBetween;
 
         if (totalRowW <= maxTextW) {
           // Fit all in 1 horizontal row centered
           let startX = centerX - totalRowW / 2;
           measuredItems.forEach((item) => {
-            const iconCx = startX + 28;
-            const iconCy = currentY + 28;
+            const iconCx = startX + 34;
+            const iconCy = currentY + 34;
 
             // Red Circle with White Checkmark
             ctx.fillStyle = '#EF1C2D';
             ctx.beginPath();
-            ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+            ctx.arc(iconCx, iconCy, 34, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = '900 30px "Inter", sans-serif';
+            ctx.font = '900 36px "Inter", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('✓', iconCx, iconCy + 1);
 
             // Spec text
             ctx.textAlign = 'left';
-            ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+            ctx.font = '700 48px "Plus Jakarta Sans", "Inter", sans-serif';
             ctx.fillStyle = '#0B1B3D';
-            ctx.fillText(item.spec, startX + 72, iconCy);
+            ctx.fillText(item.spec, startX + 86, iconCy);
 
             startX += item.totalW + gapBetween;
           });
-          currentY += 74;
+          currentY += 86;
         } else {
           // Wrap into 2 horizontal rows centered if text is wide
           const row1 = measuredItems.slice(0, 2);
@@ -311,72 +311,72 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
           const r1W = row1.reduce((acc, item) => acc + item.totalW, 0) + (row1.length - 1) * gapBetween;
           let startX1 = centerX - r1W / 2;
           row1.forEach((item) => {
-            const iconCx = startX1 + 28;
-            const iconCy = currentY + 28;
+            const iconCx = startX1 + 34;
+            const iconCy = currentY + 34;
 
             ctx.fillStyle = '#EF1C2D';
             ctx.beginPath();
-            ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+            ctx.arc(iconCx, iconCy, 34, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = '900 30px "Inter", sans-serif';
+            ctx.font = '900 36px "Inter", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('✓', iconCx, iconCy + 1);
 
             ctx.textAlign = 'left';
-            ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+            ctx.font = '700 48px "Plus Jakarta Sans", "Inter", sans-serif';
             ctx.fillStyle = '#0B1B3D';
-            ctx.fillText(item.spec, startX1 + 72, iconCy);
+            ctx.fillText(item.spec, startX1 + 86, iconCy);
 
             startX1 += item.totalW + gapBetween;
           });
-          currentY += 70;
+          currentY += 82;
 
           if (row2.length > 0) {
             const r2W = row2.reduce((acc, item) => acc + item.totalW, 0) + (row2.length - 1) * gapBetween;
             let startX2 = centerX - r2W / 2;
             row2.forEach((item) => {
-              const iconCx = startX2 + 28;
-              const iconCy = currentY + 28;
+              const iconCx = startX2 + 34;
+              const iconCy = currentY + 34;
 
               ctx.fillStyle = '#EF1C2D';
               ctx.beginPath();
-              ctx.arc(iconCx, iconCy, 28, 0, Math.PI * 2);
+              ctx.arc(iconCx, iconCy, 34, 0, Math.PI * 2);
               ctx.fill();
 
               ctx.fillStyle = '#FFFFFF';
-              ctx.font = '900 30px "Inter", sans-serif';
+              ctx.font = '900 36px "Inter", sans-serif';
               ctx.textAlign = 'center';
               ctx.textBaseline = 'middle';
               ctx.fillText('✓', iconCx, iconCy + 1);
 
               ctx.textAlign = 'left';
-              ctx.font = '700 40px "Plus Jakarta Sans", "Inter", sans-serif';
+              ctx.font = '700 48px "Plus Jakarta Sans", "Inter", sans-serif';
               ctx.fillStyle = '#0B1B3D';
-              ctx.fillText(item.spec, startX2 + 72, iconCy);
+              ctx.fillText(item.spec, startX2 + 86, iconCy);
 
               startX2 += item.totalW + gapBetween;
             });
-            currentY += 70;
+            currentY += 82;
           }
         }
         ctx.restore();
-        currentY += 18;
+        currentY += 22;
       }
 
-      // 6. ACTION CTA BUTTON (RED GRADIENT STADIUM PILL - EXTRA LARGE 114px HEIGHT)
-      const buttonY = currentY + 24;
-      const btnW = Math.min(660, maxTextW);
-      const btnH = 114;
+      // 6. ACTION CTA BUTTON (RED GRADIENT STADIUM PILL - ULTRA MAX 132px HEIGHT)
+      const buttonY = currentY + 28;
+      const btnW = Math.min(740, maxTextW);
+      const btnH = 132;
       const pillRadius = btnH / 2;
       const btnX = centerX - btnW / 2;
 
       ctx.save();
       ctx.shadowColor = 'rgba(220, 38, 38, 0.45)';
-      ctx.shadowBlur = 34;
-      ctx.shadowOffsetY = 14;
+      ctx.shadowBlur = 40;
+      ctx.shadowOffsetY = 16;
 
       const btnGrad = ctx.createLinearGradient(btnX, buttonY, btnX + btnW, buttonY + btnH);
       btnGrad.addColorStop(0, '#E50914');
@@ -390,18 +390,18 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
 
       // CTA Text + Arrow →
       ctx.save();
-      ctx.font = '800 40px "Plus Jakarta Sans", "Inter", sans-serif';
+      ctx.font = '800 46px "Plus Jakarta Sans", "Inter", sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textBaseline = 'middle';
-      ctx.fillText(`${(pageData.buttonText || 'DISCOVER OUR SOLUTIONS').toUpperCase()}`, btnX + 54, buttonY + btnH / 2 + 1);
+      ctx.fillText(`${(pageData.buttonText || 'DISCOVER OUR SOLUTIONS').toUpperCase()}`, btnX + 60, buttonY + btnH / 2 + 1);
 
-      ctx.font = '800 44px "Inter", sans-serif';
-      ctx.fillText('→', btnX + btnW - 68, buttonY + btnH / 2 + 1);
+      ctx.font = '800 52px "Inter", sans-serif';
+      ctx.fillText('→', btnX + btnW - 76, buttonY + btnH / 2 + 1);
       ctx.restore();
 
-      currentY = buttonY + btnH + 46;
+      currentY = buttonY + btnH + 52;
 
-      // 7. TRUST WORDINGS (NEXT LINE BELOW CHARACTERISTICS & CTA - EXTRA LARGE 60px NUMBERS)
+      // 7. TRUST WORDINGS (NEXT LINE BELOW CHARACTERISTICS & CTA - ULTRA MAX 72px NUMBERS)
       ctx.save();
       const stats = pageData.stats || [
         { num: '15,000+', label: 'Happy Homes' },
@@ -411,16 +411,16 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
       ];
 
       // Measure stat columns to center row perfectly
-      ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '800 72px "Plus Jakarta Sans", sans-serif';
       const statColWidths = stats.slice(0, 3).map((st) => {
         const numW = ctx.measureText(st.num).width;
-        ctx.font = '600 30px "Inter", sans-serif';
+        ctx.font = '600 34px "Inter", sans-serif';
         const lblW = ctx.measureText(st.label).width;
-        ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
-        return Math.max(numW, lblW, 200);
+        ctx.font = '800 72px "Plus Jakarta Sans", sans-serif';
+        return Math.max(numW, lblW, 230);
       });
 
-      const colGap = 56;
+      const colGap = 64;
       const totalStatsW = statColWidths.reduce((a, b) => a + b, 0) + (statColWidths.length - 1) * colGap;
       let currStatX = centerX - totalStatsW / 2;
 
@@ -428,23 +428,23 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
         const colW = statColWidths[idx];
         const colCenterX = currStatX + colW / 2;
 
-        ctx.font = '800 60px "Plus Jakarta Sans", sans-serif';
+        ctx.font = '800 72px "Plus Jakarta Sans", sans-serif';
         ctx.fillStyle = '#0B1B3D';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
         ctx.fillText(st.num, colCenterX, currentY);
 
-        ctx.font = '600 30px "Inter", sans-serif';
+        ctx.font = '600 34px "Inter", sans-serif';
         ctx.fillStyle = '#334155';
         ctx.textAlign = 'center';
-        ctx.fillText(st.label, colCenterX, currentY + 70);
+        ctx.fillText(st.label, colCenterX, currentY + 80);
 
         currStatX += colW + colGap;
 
         // Vertical divider line between stats
         if (idx < 2) {
           ctx.fillStyle = '#CBD5E1';
-          ctx.fillRect(currStatX - colGap / 2 - 1, currentY + 10, 3, 86);
+          ctx.fillRect(currStatX - colGap / 2 - 1, currentY + 12, 3.5, 100);
         }
       });
       ctx.restore();
