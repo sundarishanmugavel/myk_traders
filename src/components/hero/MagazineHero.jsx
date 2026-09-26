@@ -133,9 +133,29 @@ export default function MagazineHero() {
     flipProgress.current = progress;
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e) => {
     if (!isPointerDown.current || isFlipping) return;
     isPointerDown.current = false;
+
+    if (e && containerRef.current) {
+      const currentX = e.clientX || (e.changedTouches && e.changedTouches[0]?.clientX) || 0;
+      const currentY = e.clientY || (e.changedTouches && e.changedTouches[0]?.clientY) || 0;
+      const deltaX = Math.abs(currentX - startX.current);
+
+      if (deltaX < 12) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const clickX = (currentX - rect.left) / rect.width;
+        const clickY = (currentY - rect.top) / rect.height;
+
+        const isDesktopBtn = !isMobile && clickX >= 0.04 && clickX <= 0.45 && clickY >= 0.52 && clickY <= 0.88;
+        const isMobileBtn = isMobile && clickX >= 0.08 && clickX <= 0.92 && clickY >= 0.58 && clickY <= 0.90;
+
+        if (isDesktopBtn || isMobileBtn) {
+          handleExploreClick(e);
+          return;
+        }
+      }
+    }
 
     if (flipProgress.current > 0.4) {
       flipToNext();
@@ -147,6 +167,19 @@ export default function MagazineHero() {
       });
     }
   };
+
+  const handleExploreClick = useCallback((e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const targetElement = document.getElementById('categories');
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.hash = '#categories';
+    }
+  }, []);
 
   // Keyboard Left / Right Navigation
   useEffect(() => {
@@ -187,6 +220,21 @@ export default function MagazineHero() {
             flipProgress={flipProgress}
           />
         </div>
+
+        {/* Clickable Overlay Hotspot over EXPLORE PRODUCTS CTA Button */}
+        <a
+          href="#categories"
+          onClick={handleExploreClick}
+          className="absolute z-20 cursor-pointer block rounded-full focus:outline-none transition-transform active:scale-95"
+          style={{
+            left: isMobile ? '8%' : '5.8%',
+            top: isMobile ? '64%' : '64%',
+            width: isMobile ? '84%' : '26%',
+            height: isMobile ? '16%' : '12%',
+          }}
+          title="Explore Product Categories"
+          aria-label="Explore Product Categories"
+        />
 
         {/* Floating Ultra-Premium Overlay Controls */}
         <div className="absolute bottom-0 inset-x-0 z-10">
