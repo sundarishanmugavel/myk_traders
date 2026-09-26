@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrench, Settings, Headset, ArrowRight } from 'lucide-react';
-import technicianImg from '../assets/image copy 6.png';
+import technicianImg from '../assets/image copy 6.webp';
 
 const STEPS = [
   {
@@ -48,7 +48,7 @@ const STEPS = [
 export default function Services() {
   return (
     <section id="services" className="py-6 md:py-10 bg-gradient-to-r from-blue-50/60 via-white to-sky-50/60 text-slate-900 border-b border-slate-200/50 relative overflow-hidden">
-      
+
       {/* Background Ambient Glow Accent */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl pointer-events-none -translate-y-1/2"></div>
 
@@ -56,7 +56,7 @@ export default function Services() {
       {/* 1. SPECIFIC 768px & 1024px SCREEN SIZE LAYOUT (FOR 768px - 1279px SCREEN WIDTH) */}
       {/* ========================================================================= */}
       <div className="hidden md:block xl:hidden w-full max-w-[1380px] mx-auto px-4 sm:px-6 relative z-10">
-        
+
         {/* Header */}
         <div className="space-y-1.5 mb-5 lg:mb-6">
           <div className="flex items-center gap-2">
@@ -77,7 +77,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-12 gap-4 lg:gap-5 items-center">
-          
+
           {/* Left Column: 2x2 Service Cards Grid */}
           <div className="col-span-8 lg:col-span-9">
             <div className="grid grid-cols-2 gap-3 lg:gap-4">
@@ -113,6 +113,7 @@ export default function Services() {
                     <div className={`w-7 h-7 lg:w-8 lg:h-8 rounded-full ${step.arrowBg} ${step.arrowColor} flex items-center justify-center shrink-0`}>
                       <ArrowRight size={13} strokeWidth={2.5} />
                     </div>
+
                   </div>
                 );
               })}
@@ -141,10 +142,10 @@ export default function Services() {
       <div className="block md:hidden xl:block w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] xl:px-[25px] relative z-10">
 
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 xl:gap-6 items-center relative z-10">
-          
+
           {/* Left Column: Header + 4 Process Steps */}
           <div className="xl:col-span-10 space-y-8 xl:py-2">
-            
+
             {/* Header */}
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
@@ -170,7 +171,7 @@ export default function Services() {
                 const Icon = step.icon;
                 return (
                   <div key={idx} className="flex items-center justify-between relative">
-                    
+
                     <div className="flex items-start gap-3.5">
                       <div className={`w-14 h-14 sm:w-[3.75rem] sm:h-[3.75rem] rounded-full ${step.bgColor} ${step.iconColor} flex items-center justify-center shrink-0 shadow-xs`}>
                         <Icon size={26} strokeWidth={2.3} />
@@ -183,7 +184,7 @@ export default function Services() {
                         <h3 className="text-lg sm:text-xl font-black text-[#0B1B3D] leading-snug">
                           {step.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed pt-0.5 max-w-[210px]">
+                        <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed pt-0.5 max-w-none sm:max-w-[210px]">
                           {step.desc}
                         </p>
                       </div>
@@ -202,11 +203,11 @@ export default function Services() {
           </div>
 
           {/* Right Column: Technician Image Showcase */}
-          <div className="xl:col-span-2 relative flex justify-end items-center h-full min-h-[200px] xl:min-h-[250px]">
+          <div className="xl:col-span-2 relative flex justify-center xl:justify-end items-center h-full min-h-[200px] xl:min-h-[250px] pt-4 xl:pt-0">
             <img
               src={technicianImg}
               alt="MYK Traders Service Technician"
-              className="w-full max-w-[200px] xl:max-w-[220px] max-h-[240px] xl:max-h-[275px] object-contain object-right"
+              className="w-full max-w-[240px] xl:max-w-[220px] max-h-[260px] xl:max-h-[275px] object-contain object-center xl:object-right mx-auto xl:mr-0"
             />
           </div>
 

@@ -111,116 +111,153 @@ export default function Reviews() {
         {/* ========================================================================= */}
         {/* 1. TABLET LAYOUT FOR 768px & 1024px (FOR 768px - 1279px SCREEN WIDTH) */}
         {/* ========================================================================= */}
-        <div className="hidden md:block xl:hidden space-y-6">
+        <div className="hidden md:block xl:hidden">
+          <div className="grid grid-cols-12 gap-6 lg:gap-8 items-center">
 
-          {/* Top Header Row with Title on Left & Rating Card on Right */}
-          <div className="flex items-center justify-between gap-4">
-            
-            {/* Left Header */}
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-[3px] bg-[#EF4444] rounded-full"></div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#0B1B3D]">
-                  CUSTOMER REVIEWS
-                </span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight leading-[1.12] text-[#0B1B3D]">
-                WHAT OUR <span className="text-[#EF4444]">CUSTOMERS SAY</span>
-              </h2>
-
-              <p className="text-slate-500 text-xs sm:text-sm font-medium pt-0.5">
-                Real experiences. Real people. Real trust.
-              </p>
-            </div>
-
-            {/* Right Rating Box */}
-            <div className="bg-white rounded-2xl p-3.5 shadow-xs border border-slate-100 flex items-center gap-3.5 shrink-0">
-              <div className="shrink-0 bg-slate-50 p-2 rounded-xl">
-                <GoogleIcon size={34} />
-              </div>
-              <div className="space-y-0.5">
+            {/* Left Column: Title, Rating Badge & 3 Feature Badges */}
+            <div className="col-span-4 space-y-4 lg:space-y-5">
+              <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-black text-[#0B1B3D]">4.9 / 5</span>
-                  <div className="flex items-center gap-0.5 text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
+                  <div className="w-6 h-[3px] bg-[#EF4444] rounded-full"></div>
+                  <span className="text-[11px] lg:text-xs font-bold uppercase tracking-[0.2em] text-[#0B1B3D]">
+                    CUSTOMER REVIEWS
+                  </span>
                 </div>
-                <span className="text-[11px] text-slate-400 font-medium block">Based on Google Reviews</span>
+
+                <h2 className="text-2xl lg:text-3xl font-black tracking-tight leading-[1.12] text-[#0B1B3D]">
+                  WHAT OUR<br />
+                  <span className="text-[#EF4444]">CUSTOMERS SAY</span>
+                </h2>
+
+                <p className="text-slate-500 text-xs lg:text-sm font-medium pt-0.5">
+                  Real experiences. Real people. Real trust.
+                </p>
               </div>
-            </div>
 
-          </div>
-
-          {/* Carousel Track (2 Cards Side-by-Side) */}
-          <div
-            className="relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Overflow Track */}
-            <div className="overflow-hidden p-1 -m-1">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{
-                  transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
-                }}
-              >
-                {REVIEWS.map((rev) => (
-                  <div
-                    key={rev.id}
-                    className="w-1/2 shrink-0 px-2.5"
-                  >
-                    <div className="bg-white rounded-2xl p-5 shadow-xs border border-slate-100/90 flex flex-col justify-between h-full min-h-[220px] hover:shadow-md transition-all duration-300 relative group">
-                      
-                      {/* Top Row: Quote Icon + 5 Stars + Google Icon */}
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-3">
-                          <div className="w-7 h-7 rounded-full bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0">
-                            <Quote size={14} className="fill-[#0066FF]" />
-                          </div>
-
-                          <div className="flex items-center gap-0.5 text-amber-400">
-                            {[...Array(rev.rating)].map((_, i) => (
-                              <Star key={i} size={13} className="fill-amber-400 text-amber-400" />
-                            ))}
-                          </div>
-
-                          <GoogleIcon size={18} />
-                        </div>
-
-                        {/* Review Quote Text */}
-                        <p className="text-slate-600 text-xs font-normal leading-relaxed">
-                          "{rev.text}"
-                        </p>
-                      </div>
-
-                      {/* Bottom Reviewer Info */}
-                      <div className="pt-3 border-t border-slate-100/80 mt-3 flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-full ${rev.initialBg} text-white font-black text-xs flex items-center justify-center shrink-0 shadow-xs`}>
-                          {rev.initial}
-                        </div>
-                        <div>
-                          <h3 className="text-xs font-extrabold text-[#0B1B3D] leading-tight">
-                            {rev.name}
-                          </h3>
-                          <span className="text-[10px] text-slate-400 font-medium block pt-0.5">
-                            {rev.location}
-                          </span>
-                        </div>
-                      </div>
-
+              {/* Google Rating Card */}
+              <div className="bg-white rounded-2xl p-3 lg:p-4 shadow-xs border border-slate-100 flex items-center gap-3 max-w-[280px]">
+                <div className="shrink-0 bg-slate-50 p-1.5 lg:p-2 rounded-xl">
+                  <GoogleIcon size={30} />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-base lg:text-lg font-black text-[#0B1B3D]">4.9 / 5</span>
+                    <div className="flex items-center gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} className="fill-amber-400 text-amber-400" />
+                      ))}
                     </div>
                   </div>
-                ))}
+                  <span className="text-[10px] lg:text-xs text-slate-400 font-medium block">Based on Google Reviews</span>
+                </div>
+              </div>
+
+              {/* 3 Badges */}
+              <div className="pt-1 grid grid-cols-3 gap-2 max-w-[300px]">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-rose-100/80 text-[#EF4444] flex items-center justify-center mb-1.5 shadow-xs">
+                    <Award size={18} />
+                  </div>
+                  <span className="text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                    Trusted<br />by Thousands
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-blue-100/80 text-[#0066FF] flex items-center justify-center mb-1.5 shadow-xs">
+                    <ShieldCheck size={18} />
+                  </div>
+                  <span className="text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                    Genuine<br />Feedback
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-emerald-100/80 text-[#16A34A] flex items-center justify-center mb-1.5 shadow-xs">
+                    <ThumbsUp size={18} />
+                  </div>
+                  <span className="text-[10px] lg:text-[11px] font-bold text-[#0B1B3D] leading-tight">
+                    Real<br />Customers
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Pagination Controls & Dots */}
-            <div className="flex items-center justify-between mt-4">
-              <div className="flex items-center gap-1.5">
+            {/* Right Column: Carousel */}
+            <div 
+              className="col-span-8 relative"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* Top Navigation Arrows */}
+              <div className="flex items-center justify-end gap-2 mb-3 pr-1">
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous review"
+                  className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer active:scale-95 transition-all"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next review"
+                  className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer active:scale-95 transition-all"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+
+              {/* Cards Track */}
+              <div className="overflow-hidden p-1 -m-1">
+                <div
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{
+                    transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
+                  }}
+                >
+                  {REVIEWS.map((rev) => (
+                    <div
+                      key={rev.id}
+                      className="w-1/2 shrink-0 px-2 lg:px-2.5"
+                    >
+                      <div className="bg-white rounded-3xl p-4 lg:p-5 shadow-xs border border-slate-100/90 flex flex-col justify-between h-full min-h-[220px] lg:min-h-[240px] hover:shadow-md transition-all duration-300 relative group">
+                        <div>
+                          <div className="flex items-center justify-between gap-2 mb-3">
+                            <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0">
+                              <Quote size={14} className="fill-[#0066FF]" />
+                            </div>
+                            <div className="flex items-center gap-0.5 text-amber-400">
+                              {[...Array(rev.rating)].map((_, i) => (
+                                <Star key={i} size={13} className="fill-amber-400 text-amber-400" />
+                              ))}
+                            </div>
+                            <GoogleIcon size={18} />
+                          </div>
+                          <p className="text-slate-600 text-xs lg:text-[13px] font-normal leading-relaxed">
+                            "{rev.text}"
+                          </p>
+                        </div>
+                        <div className="pt-3 border-t border-slate-100/80 mt-3 flex items-center gap-2.5 lg:gap-3">
+                          <div className={`w-8 h-8 lg:w-9 lg:h-9 rounded-full ${rev.initialBg} text-white font-black text-xs flex items-center justify-center shrink-0 shadow-xs`}>
+                            {rev.initial}
+                          </div>
+                          <div>
+                            <h3 className="text-xs lg:text-[13px] font-extrabold text-[#0B1B3D] leading-tight">
+                              {rev.name}
+                            </h3>
+                            <span className="text-[10px] lg:text-[11px] text-slate-400 font-medium block pt-0.5">
+                              {rev.location}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bottom Centered Dots */}
+              <div className="flex items-center justify-center gap-1.5 mt-4">
                 {[...Array(maxIndex + 1)].map((_, idx) => (
                   <button
                     key={idx}
@@ -234,21 +271,119 @@ export default function Reviews() {
                   />
                 ))}
               </div>
+            </div>
 
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* 2. MOBILE LAYOUT (< 768px ONLY) */}
+        {/* ========================================================================= */}
+        <div className="block md:hidden space-y-5">
+          
+          {/* Header */}
+          <div className="space-y-1.5 px-0.5">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-[3px] bg-[#EF4444] rounded-full"></div>
+              <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#EF4444]">
+                CUSTOMER REVIEWS
+              </span>
+            </div>
+
+            <h2 className="text-2xl font-black tracking-tight leading-[1.15] text-[#0B1B3D]">
+              WHAT OUR<br />
+              <span className="text-[#0066FF]">CUSTOMERS SAY</span>
+            </h2>
+
+            <p className="text-slate-500 text-xs font-medium pt-0.5">
+              Real experiences. Real people. Real trust.
+            </p>
+          </div>
+
+          {/* Google Rating Card */}
+          <div className="bg-white rounded-3xl p-5 shadow-xs border border-slate-100/90 flex items-center gap-4">
+            <div className="shrink-0 p-1">
+              <GoogleIcon size={46} />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xl font-black text-[#0B1B3D]">4.9 / 5</span>
+              </div>
+              <div className="flex items-center gap-1 text-amber-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} className="fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-xs text-slate-400 font-medium block">Based on Google Reviews</span>
+            </div>
+          </div>
+
+          {/* Individual Review Card (Mobile Interactive Slide) */}
+          <div className="relative">
+            <div className="bg-white rounded-3xl p-6 shadow-xs border border-slate-100/90 flex flex-col justify-between space-y-4 min-h-[220px]">
+              
+              {/* 5 Stars */}
+              <div className="flex items-center gap-1 text-amber-400">
+                {[...Array(REVIEWS[currentIndex % REVIEWS.length].rating)].map((_, i) => (
+                  <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+
+              {/* Review Quote Text */}
+              <p className="text-slate-600 text-xs leading-relaxed font-normal">
+                "{REVIEWS[currentIndex % REVIEWS.length].text}"
+              </p>
+
+              {/* Author Row */}
+              <div className="pt-2 flex items-center gap-3.5">
+                <div className={`w-12 h-12 rounded-full ${REVIEWS[currentIndex % REVIEWS.length].initialBg} text-white font-black text-sm flex items-center justify-center shrink-0 shadow-xs`}>
+                  {REVIEWS[currentIndex % REVIEWS.length].initial}
+                </div>
+                <div>
+                  <h3 className="text-sm font-black text-[#0B1B3D] leading-tight">
+                    {REVIEWS[currentIndex % REVIEWS.length].name}
+                  </h3>
+                  <span className="text-xs text-slate-400 font-medium block pt-0.5">
+                    {REVIEWS[currentIndex % REVIEWS.length].location}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Pagination Controls & Navigation Arrows BELOW THE RIGHT BOTTOM OF THE REVIEW */}
+            <div className="flex items-center justify-between mt-3 px-1">
+              {/* Dots Indicator on Left */}
+              <div className="flex items-center gap-1.5">
+                {REVIEWS.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    aria-label={`Go to review ${idx + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      (currentIndex % REVIEWS.length) === idx
+                        ? 'w-6 bg-[#0066FF]'
+                        : 'w-2 bg-slate-300 hover:bg-slate-400'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Circular < > Arrow Buttons in Bottom-Right Corner Below Card */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrev}
                   aria-label="Previous review"
-                  className="w-7 h-7 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer active:scale-95 transition-all"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={18} strokeWidth={2.2} />
                 </button>
                 <button
                   onClick={handleNext}
                   aria-label="Next review"
-                  className="w-7 h-7 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 flex items-center justify-center shadow-xs cursor-pointer active:scale-95 transition-all"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={18} strokeWidth={2.2} />
                 </button>
               </div>
             </div>
@@ -258,9 +393,9 @@ export default function Reviews() {
         </div>
 
         {/* ========================================================================= */}
-        {/* 2. DEFAULT LAYOUT FOR MOBILE (< 768px) AND LARGE DESKTOP (>= 1280px) */}
+        {/* 3. ORIGINAL LARGE DESKTOP LAYOUT (>= 1280px ONLY) */}
         {/* ========================================================================= */}
-        <div className="block md:hidden xl:block">
+        <div className="hidden xl:block">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-center">
 
             {/* Left Column: Title, Rating Badge & 3 Feature Badges */}

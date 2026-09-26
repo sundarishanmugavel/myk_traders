@@ -1,19 +1,22 @@
 import React from 'react';
 import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, Sun, Sliders, PhoneCall } from 'lucide-react';
-import product1Img from '../assets/ww-new.png';
-import product2Img from '../assets/cctv.png';
-import product3Img from '../assets/inverter.png';
-import product4Img from '../assets/solar panel.png';
-import product5Img from '../assets/water motor.png';
-import product6Img from '../assets/tank.png';
+import product1Img from '../assets/ww-new.webp';
+import product2Img from '../assets/cctv.webp';
+import product3Img from '../assets/inverter.webp';
+import product4Img from '../assets/solar panel.webp';
+import product5Img from '../assets/water motor.webp';
+import product6Img from '../assets/tank.webp';
 
 // MOBILE ONLY PRODUCT IMAGES (Screen size <= 640px / 425x645)
-import mobProduct1 from '../assets/PRODUCT_1.png';
-import mobProduct2 from '../assets/PRODUCT_2.png';
-import mobProduct3 from '../assets/PRODUCT_3.png';
-import mobProduct4 from '../assets/PRODUCT_4.png';
-import mobProduct5 from '../assets/PRODUCT_5.png';
-import mobWaterSensor from '../assets/water_sensor.png';
+import mobCctvImg from '../assets/MOB_CCTV.webp';
+import mobInverterImg from '../assets/MOB_INVERTER.webp';
+import mobSolarImg from '../assets/MOB_SOLAR.webp';
+import mobMotorImg from '../assets/MOB_MOTOR.webp';
+import mobTankImg from '../assets/MOB_TANK.webp';
+
+// 768PX TABLET PRODUCT IMAGES
+import rectPurifierImg from '../assets/RECT_PURIFIER.webp';
+import rectTankSensorImg from '../assets/RECT_TANK_SENSOR.webp';
 
 // BRAND LOGO IMAGE ASSETS
 import aquaguardLogo from '../assets/AQUAGUARD.png';
@@ -25,12 +28,12 @@ import ashirvadLogo from '../assets/ashirvad.png';
 import havellsLogo from '../assets/havells.png';
 
 const PRODUCTS_GRID = [
-  { id: 1, title: 'Water Purifiers', image: product1Img, mobImage: mobProduct1 },
-  { id: 2, title: 'CCTV & Surveillance', image: product2Img, mobImage: mobProduct2 },
-  { id: 3, title: 'Inverters & Batteries', image: product3Img, mobImage: mobProduct3 },
-  { id: 4, title: 'Solar Solutions', image: product4Img, mobImage: mobProduct4 },
-  { id: 5, title: 'Water Motors', image: product5Img, mobImage: mobProduct5 },
-  { id: 6, title: 'Tank Automation', image: product6Img, mobImage: mobWaterSensor },
+  { id: 1, title: 'Water Purifiers', image: product1Img, mobImage: rectPurifierImg },
+  { id: 2, title: 'CCTV & Surveillance', image: product2Img, mobImage: mobCctvImg },
+  { id: 3, title: 'Inverters & Batteries', image: product3Img, mobImage: mobInverterImg },
+  { id: 4, title: 'Solar Solutions', image: product4Img, mobImage: mobSolarImg },
+  { id: 5, title: 'Water Motors', image: product5Img, mobImage: mobMotorImg },
+  { id: 6, title: 'Tank Automation', image: product6Img, mobImage: mobTankImg },
 ];
 
 const BRAND_LOGOS = [
@@ -77,102 +80,107 @@ export default function Categories() {
           {/* 1. Water Purifiers */}
           <a
             href="#products"
-            className="col-span-1 row-span-1 xl:col-span-1 xl:row-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-56 xl:h-auto"
+            className="col-span-1 row-span-1 xl:col-span-1 xl:row-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-auto"
           >
+            <img
+              src={rectPurifierImg}
+              alt="Water Purifiers"
+              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product1Img}
               alt="Water Purifiers"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobProduct1}
-              alt="Water Purifiers"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 2. CCTV & Surveillance */}
           <a
             href="#products"
-            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
+            <img
+              src={mobCctvImg}
+              alt="CCTV & Surveillance"
+              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product2Img}
               alt="CCTV & Surveillance"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobProduct2}
-              alt="CCTV & Surveillance"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 3. Inverters & Batteries */}
           <a
             href="#products"
-            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
+            <img
+              src={mobInverterImg}
+              alt="Inverters & Batteries"
+              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product3Img}
               alt="Inverters & Batteries"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobProduct3}
-              alt="Inverters & Batteries"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 4. Solar Solutions */}
           <a
             href="#products"
-            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
+            <img
+              src={mobSolarImg}
+              alt="Solar Solutions"
+              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product4Img}
               alt="Solar Solutions"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobProduct4}
-              alt="Solar Solutions"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 5. Water Motors */}
           <a
             href="#products"
-            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
+            className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
+            <img
+              src={mobMotorImg}
+              alt="Water Motors"
+              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product5Img}
               alt="Water Motors"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobProduct5}
-              alt="Water Motors"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 
           {/* 6. Tank Automation */}
           <a
             href="#products"
-            className="col-span-1 row-span-1 md:col-span-1 xl:col-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[195px] xs:h-[210px] sm:h-52 md:h-56 xl:h-52"
+            className="col-span-1 row-span-1 md:col-span-1 xl:col-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
+            <img
+              src={rectTankSensorImg}
+              alt="Tank Automation"
+              className="hidden md:block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
+            <img
+              src={mobTankImg}
+              alt="Tank Automation"
+              className="block md:hidden w-full h-full object-cover rounded-xl mx-auto"
+            />
             <img
               src={product6Img}
               alt="Tank Automation"
-              className="hidden sm:block w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobWaterSensor}
-              alt="Tank Automation"
-              className="block sm:hidden w-full h-full object-cover rounded-xl mx-auto"
+              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
             />
           </a>
 

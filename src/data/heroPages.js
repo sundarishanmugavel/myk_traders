@@ -1,7 +1,7 @@
-import wpImg from '../assets/wp.png';
-import cctvImg from '../assets/cctv_new.png';
-import inverterImg from '../assets/inverter_1.png';
-import sensorImg from '../assets/sensor.png';
+import wpImg from '../assets/wp.webp';
+import cctvImg from '../assets/cctv_new.webp';
+import inverterImg from '../assets/inverter_1.webp';
+import sensorImg from '../assets/sensor.webp';
 
 export const HERO_PAGES = [
   {

@@ -1,7 +1,7 @@
-import p1Img from '../assets/image copy 2.png';
-import p2Img from '../assets/image copy 3.png';
-import p3Img from '../assets/image copy 4.png';
-import p4Img from '../assets/image copy 5.png';
+import p1Img from '../assets/image copy 2.webp';
+import p2Img from '../assets/image copy 3.webp';
+import p3Img from '../assets/image copy 4.webp';
+import p4Img from '../assets/image copy 5.webp';
 
 export const CATEGORIES = ['All', 'Purifier', 'Inverter', 'CCTV', 'Sensor'];
 

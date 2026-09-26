@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Zap, Droplets, Radio } from 'lucide-react';
-import purifierImg from '../assets/image copy 2.png';
-import cctvImg from '../assets/image copy 3.png';
-import inverterImg from '../assets/image copy 4.png';
-import sensorImg from '../assets/image copy 5.png';
+import purifierImg from '../assets/image copy 2.webp';
+import cctvImg from '../assets/image copy 3.webp';
+import inverterImg from '../assets/image copy 4.webp';
+import sensorImg from '../assets/image copy 5.webp';
 
 const HERO_SLIDES = [
   {

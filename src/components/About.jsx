@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, Settings, Headset, Gem, Wrench, ShieldCheck, MapPin, PhoneCall } from 'lucide-react';
-import aboutShowcaseImg from '../assets/about_showcase.png';
+import aboutShowcaseImg from '../assets/about_showcase.webp';
 
 function CountUpNumber({ end, suffix = "", duration = 2000 }) {
   const [count, setCount] = React.useState(0);
@@ -278,13 +278,131 @@ export default function About() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. DEFAULT LAYOUT FOR MOBILE (< 768px) AND LARGE DESKTOP (>= 1280px) */}
+      {/* 2. MOBILE LAYOUT (< 768px ONLY) */}
       {/* ========================================================================= */}
-      <div className="block md:hidden xl:block w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] xl:px-[25px] relative z-10">
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-10 items-center">
+      <div className="block md:hidden w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] relative z-10 space-y-3.5">
+        
+        {/* 1. Header + Paragraphs */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-slate-500 tracking-widest uppercase">
+              ABOUT MYK TRADERS
+            </span>
+            <div className="w-10 h-[2px] bg-red-600 rounded-full"></div>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-[1.15] text-slate-900">
+            SMART SOLUTIONS.<br />
+            <span className="text-[#D9232D]">TRUSTED LOCALLY.</span>
+          </h2>
+
+          <div className="space-y-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+            <p>
+              MYK Traders provides water, power, security and automation solutions across Ramanathapuram district. With 150+ water purifier models and a wide range of trusted products, we help homes and businesses find the right solution for their needs.
+            </p>
+            <p>
+              From installation to after-sales service, our experienced team delivers reliable products and dependable local support.
+            </p>
+          </div>
+        </div>
+
+        {/* 2. 3D PODIUM SHOWCASE IMAGE (TIGHT SPACING ON MOBILE) */}
+        <div className="flex items-center justify-center -my-1 py-0">
+          <div className="relative w-full max-w-[310px] mx-auto">
+            <img
+              src={aboutShowcaseImg}
+              alt="MYK Traders Smart Solutions Showcase"
+              className="w-full h-auto object-contain drop-shadow-xl"
+            />
+          </div>
+        </div>
+
+        {/* 3. TRUST BANNER STAT COUNTERS (PLACED DIRECTLY BELOW THE IMAGE ON MOBILE) */}
+        <div className="flex items-center justify-between py-3 border-y border-slate-200/80 max-w-md mx-auto">
+          <div className="flex flex-col items-center text-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
+              <Users size={16} />
+            </div>
+            <div className="text-2xl font-black text-slate-900">
+              <CountUpNumber end={7} suffix="+" duration={1800} />
+            </div>
+            <div className="text-xs font-medium text-slate-500 leading-tight">
+              Years of<br />Experience
+            </div>
+          </div>
+
+          <div className="w-[1px] h-14 bg-slate-300/70"></div>
+
+          <div className="flex flex-col items-center text-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
+              <Settings size={16} />
+            </div>
+            <div className="text-2xl font-black text-slate-900">
+              <CountUpNumber end={5000} suffix="+" duration={2200} />
+            </div>
+            <div className="text-xs font-medium text-slate-500 leading-tight">
+              Projects<br />Served
+            </div>
+          </div>
+
+          <div className="w-[1px] h-14 bg-slate-300/70"></div>
+
+          <div className="flex flex-col items-center text-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
+              <Headset size={16} />
+            </div>
+            <div className="text-2xl font-black text-slate-900">24/7</div>
+            <div className="text-xs font-medium text-slate-500 leading-tight">
+              Service<br />Support
+            </div>
+          </div>
+        </div>
+
+        {/* 4. WHY CHOOSE MYK? LIST */}
+        <div className="space-y-4 pt-2">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-8 h-[2px] bg-red-600 rounded-full"></div>
+            <span className="text-xs font-bold text-slate-800 tracking-wider uppercase">
+              WHY CHOOSE MYK?
+            </span>
+          </div>
+
+          <div className="space-y-3.5">
+            {whyChooseUsDataDefault.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div 
+                  key={item.num} 
+                  className="flex items-start gap-3.5 pb-3.5 border-b border-slate-200/60 last:border-none last:pb-0"
+                >
+                  <div className={`w-7 h-7 rounded-full border ${item.borderColor} flex items-center justify-center shrink-0 mt-0.5`}>
+                    <IconComponent size={14} />
+                  </div>
+                  <div className="space-y-0.5 flex-1">
+                    <h3 className="text-sm font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
+                      <span>{item.title}</span>
+                    </h3>
+                    <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. LARGE DESKTOP LAYOUT (>= 1280px ONLY) */}
+      {/* ========================================================================= */}
+      <div className="hidden xl:block w-full max-w-[1380px] mx-auto px-[25px] relative z-10">
+        <div className="grid grid-cols-12 gap-10 items-center">
 
           {/* LEFT COLUMN: TITLE, BIO, STATS */}
-          <div className="xl:col-span-5 space-y-6">
+          <div className="col-span-5 space-y-6">
 
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-slate-500 tracking-widest uppercase">
@@ -293,12 +411,12 @@ export default function About() {
               <div className="w-10 h-[2px] bg-red-600 rounded-full"></div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl xl:text-[2.75rem] font-extrabold tracking-tight leading-[1.15] text-slate-900">
+            <h2 className="text-[2.75rem] font-extrabold tracking-tight leading-[1.15] text-slate-900">
               SMART SOLUTIONS.<br />
               <span className="text-[#D9232D]">TRUSTED LOCALLY.</span>
             </h2>
 
-            <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+            <div className="space-y-4 text-slate-600 text-base leading-relaxed font-normal">
               <p>
                 MYK Traders provides water, power, security and automation solutions across Ramanathapuram district. With 150+ water purifier models and a wide range of trusted products, we help homes and businesses find the right solution for their needs.
               </p>
@@ -312,7 +430,7 @@ export default function About() {
                 <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
                   <Users size={16} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900">
+                <div className="text-3xl font-black text-slate-900">
                   <CountUpNumber end={7} suffix="+" duration={1800} />
                 </div>
                 <div className="text-xs font-medium text-slate-500 leading-tight">
@@ -326,7 +444,7 @@ export default function About() {
                 <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
                   <Settings size={16} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900">
+                <div className="text-3xl font-black text-slate-900">
                   <CountUpNumber end={5000} suffix="+" duration={2200} />
                 </div>
                 <div className="text-xs font-medium text-slate-500 leading-tight">
@@ -340,7 +458,7 @@ export default function About() {
                 <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-red-600 mb-1">
                   <Headset size={16} />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900">24/7</div>
+                <div className="text-3xl font-black text-slate-900">24/7</div>
                 <div className="text-xs font-medium text-slate-500 leading-tight">
                   Service<br />Support
                 </div>
@@ -350,8 +468,8 @@ export default function About() {
           </div>
 
           {/* CENTER COLUMN: 3D PODIUM SHOWCASE */}
-          <div className="xl:col-span-3 flex flex-col items-center justify-center relative py-6 xl:py-4">
-            <div className="relative w-full max-w-[280px] sm:max-w-md xl:max-w-none group transform scale-90 sm:scale-100 xl:scale-[1.22] origin-center transition-transform mx-auto">
+          <div className="col-span-3 flex flex-col items-center justify-center relative py-4">
+            <div className="relative w-full max-w-none group transform scale-[1.22] origin-center transition-transform mx-auto">
               <img
                 src={aboutShowcaseImg}
                 alt="MYK Traders Smart Solutions Showcase"
@@ -361,7 +479,7 @@ export default function About() {
           </div>
 
           {/* RIGHT COLUMN: WHY CHOOSE MYK FEATURE LIST */}
-          <div className="xl:col-span-4 space-y-5 xl:pl-2">
+          <div className="col-span-4 space-y-5 pl-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-[2px] bg-red-600 rounded-full"></div>
               <span className="text-xs font-bold text-slate-800 tracking-wider uppercase">
@@ -385,7 +503,7 @@ export default function About() {
                         <span className="text-xs font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
                         <span>{item.title}</span>
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
+                      <p className="text-sm text-slate-500 leading-relaxed font-normal">
                         {item.desc}
                       </p>
                     </div>
