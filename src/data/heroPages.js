@@ -1,4 +1,4 @@
-import wpImg from '../assets/wp.webp';
+import wpImg from '../assets/water.png';
 import cctvImg from '../assets/cctv_new.webp';
 import inverterImg from '../assets/inverter_1.webp';
 import sensorImg from '../assets/sensor.webp';
@@ -14,7 +14,7 @@ export const HERO_PAGES = [
     buttonText: 'DISCOVER OUR SOLUTIONS',
     specs: ['Multi-Stage Purification', 'RO + UV + UF Technology', 'Copper Technology'],
     stats: [
-      { num: '15,000+', label: 'Customers Served' },
+      { num: '5,000+', label: 'Customers Served' },
       { num: '24/7', label: 'Service Support' },
       { num: '100%', label: 'Genuine Products' },
       { num: '4.9★', label: 'Customer Rating' },
@@ -35,7 +35,7 @@ export const HERO_PAGES = [
     buttonText: 'EXPLORE PRODUCTS',
     specs: ['4K Ultra HD Clarity', 'Colour Night Vision', 'AI Motion Detection'],
     stats: [
-      { num: '15,000+', label: 'Customers Served' },
+      { num: '5,000+', label: 'Customers Served' },
       { num: '24/7', label: 'Service Support' },
       { num: '100%', label: 'Genuine Products' },
       { num: '4.9★', label: 'Customer Rating' },
@@ -51,11 +51,11 @@ export const HERO_PAGES = [
     category: 'POWER BACKUP SOLUTIONS',
     badge: 'POWER BACKUP SOLUTIONS',
     title: 'POWER THAT\nNEVER LETS YOU DOWN.',
-    subtitle: 'Reliable power backup for your home, keeping essential appliances running when the power goes out.',
+    subtitle: 'Reliable power backup solutions for homes, offices and businesses, keeping essential equipment running when the power goes out.',
     buttonText: 'EXPLORE PRODUCTS',
     specs: ['Pure Sine Wave Technology', 'Fast & Efficient Charging', 'Long-Lasting Backup'],
     stats: [
-      { num: '15,000+', label: 'Customers Served' },
+      { num: '5,000+', label: 'Customers Served' },
       { num: '24/7', label: 'Service Support' },
       { num: '100%', label: 'Genuine Products' },
       { num: '4.9★', label: 'Customer Rating' },
@@ -68,14 +68,14 @@ export const HERO_PAGES = [
   {
     id: 4,
     pageNum: '04',
-    category: 'SMART TANK AUTOMATION',
-    badge: 'SMART TANK AUTOMATION',
+    category: 'SMART WATER TANK SENSOR',
+    badge: 'SMART WATER TANK SENSOR',
     title: 'SMART CONTROL.\nNO MORE OVERFLOW.',
     subtitle: 'Automatically monitor your water level and control your pump to help prevent overflow, dry running and water waste.',
     buttonText: 'EXPLORE PRODUCTS',
     specs: ['Automatic Overflow Protection', 'Wireless Water-Level Monitoring', 'Dry-Run Protection'],
     stats: [
-      { num: '15,000+', label: 'Customers Served' },
+      { num: '5,000+', label: 'Customers Served' },
       { num: '24/7', label: 'Service Support' },
       { num: '100%', label: 'Genuine Products' },
       { num: '4.9★', label: 'Customer Rating' },

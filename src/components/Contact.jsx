@@ -90,7 +90,7 @@ export default function Contact() {
 
               {/* 3. Email Us */}
               <a
-                href="mailto:myktraders.business@gmail.com"
+                href="mailto:mykoperation@gmail.com"
                 className="bg-white rounded-2xl p-3.5 sm:p-4 lg:p-4.5 border border-slate-100 shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group block"
               >
                 <div className="flex items-center gap-3 lg:gap-4">
@@ -103,7 +103,7 @@ export default function Contact() {
                       Email Us
                     </h3>
                     <p className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-slate-800 pt-0.5 leading-tight">
-                      myktraders.business@gmail.com
+                      mykoperation@gmail.com
                     </p>
                     <p className="text-[10px] sm:text-xs text-slate-500 font-medium leading-tight pt-0.5">
                       We usually respond within 24 hours.

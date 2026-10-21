@@ -392,7 +392,7 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
         // 7. TRUST WORDINGS
         ctx.save();
         const stats = pageData.stats || [
-          { num: '15,000+', label: 'Happy Homes' },
+          { num: '5,000+', label: 'Happy Homes' },
           { num: '24/7', label: 'On-Site Service' },
           { num: '100%', label: 'Genuine Parts' },
           { num: '4.9★', label: 'Customer Rating' },
@@ -624,7 +624,7 @@ export function createPageCanvasTexture(pageData, onLoaded, isMobile = false, co
         const statsY = buttonY + btnH + 60;
         ctx.save();
         const stats = pageData.stats || [
-          { num: '15,000+', label: 'Happy Homes' },
+          { num: '5,000+', label: 'Happy Homes' },
           { num: '24/7', label: 'On-Site Service' },
           { num: '100%', label: 'Genuine Parts' },
           { num: '4.9★', label: 'Customer Rating' },

@@ -54,7 +54,7 @@ export const PRODUCTS = [
   {
     id: 'p4',
     category: 'Sensor',
-    name: 'MYK HydroSense Wireless Controller',
+    name: 'Smart Water Tank Sensor',
     brand: 'MYK Automation',
     image: p4Img,
     badge: 'Automation',
@@ -64,7 +64,7 @@ export const PRODUCTS = [
       'Dry Run & Voltage Protection',
       'LED Water Level Percentage Meter',
     ],
-    description: 'Automated water tank level manager that prevents water overflow, saves electricity, and protects motor pumps from dry running.',
+    description: 'Automatically monitor your water level and control your pump to help prevent overflow, dry running and water waste.',
   },
   {
     id: 'p5',

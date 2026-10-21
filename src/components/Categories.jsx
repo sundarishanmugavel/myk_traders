@@ -2,16 +2,16 @@ import React from 'react';
 import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, Sun, Sliders, PhoneCall } from 'lucide-react';
 import product1Img from '../assets/ww-new.webp';
 import product2Img from '../assets/cctv.webp';
-import product3Img from '../assets/inverter.webp';
+import product3Img from '../assets/lap_inverter.png';
 import product4Img from '../assets/solar panel.webp';
-import product5Img from '../assets/water motor.webp';
+import product5Img from '../assets/spare_lap.png';
 import product6Img from '../assets/tank.webp';
 
 // MOBILE ONLY PRODUCT IMAGES (Screen size <= 640px / 425x645)
 import mobCctvImg from '../assets/MOB_CCTV.webp';
-import mobInverterImg from '../assets/MOB_INVERTER.webp';
+import mobInverterImg from '../assets/mob_inverter_2.png';
 import mobSolarImg from '../assets/MOB_SOLAR.webp';
-import mobMotorImg from '../assets/MOB_MOTOR.webp';
+import mobMotorImg from '../assets/spares_mob.png';
 import mobTankImg from '../assets/MOB_TANK.webp';
 
 // 768PX TABLET PRODUCT IMAGES
@@ -19,13 +19,17 @@ import rectPurifierImg from '../assets/RECT_PURIFIER.webp';
 import rectTankSensorImg from '../assets/RECT_TANK_SENSOR.webp';
 
 // BRAND LOGO IMAGE ASSETS
-import aquaguardLogo from '../assets/AQUAGUARD.png';
-import luminousLogo from '../assets/LUMINOUS.png';
-import hikvisionLogo from '../assets/Hikvision-Logo.png';
-import tataLogo from '../assets/tata-power-solar-logo.jpg';
-import cromptonLogo from '../assets/Crompton_vector_Logo_logoshape.com_.png';
-import ashirvadLogo from '../assets/ashirvad.png';
-import havellsLogo from '../assets/havells.png';
+import hiFocusLogo from '../assets/hi_focus.webp';
+import eChenLogo from '../assets/e-chen.png';
+import dahuaLogo from '../assets/Dahua_Technology_logo.svg';
+import cwLogo from '../assets/cw.png';
+import cpLogo from '../assets/cp logo.png';
+import hikvisionLogo from '../assets/Hikvision-Logo.webp';
+import luminousLogo from '../assets/LUMINOUS.webp';
+import microtekLogo from '../assets/Microtek-logo.webp';
+import nileLogo from '../assets/nile.png';
+import exideLogo from '../assets/Exide-Batteries-Logo-.png';
+import automLogo from '../assets/autom.png';
 
 const PRODUCTS_GRID = [
   { id: 1, title: 'Water Purifiers', image: product1Img, mobImage: rectPurifierImg },
@@ -37,18 +41,24 @@ const PRODUCTS_GRID = [
 ];
 
 const BRAND_LOGOS = [
-  { name: 'Aquaguard', src: aquaguardLogo, height: 'h-12 sm:h-16 lg:h-20' },
-  { name: 'Luminous', src: luminousLogo, height: 'h-11 sm:h-14 lg:h-18' },
-  { name: 'Hikvision', src: hikvisionLogo, height: 'h-11 sm:h-14 lg:h-18' },
-  { name: 'Tata Power Solar', src: tataLogo, height: 'h-14 sm:h-20 lg:h-24' },
-  { name: 'Crompton', src: cromptonLogo, height: 'h-12 sm:h-16 lg:h-20' },
-  { name: 'Ashirvad', src: ashirvadLogo, height: 'h-14 sm:h-20 lg:h-24' },
-  { name: 'Havells', src: havellsLogo, height: 'h-11 sm:h-14 lg:h-18' },
+  { name: 'Hikvision', src: hikvisionLogo, height: 'h-12 sm:h-16 lg:h-18' },
+  { name: 'Luminous', src: luminousLogo, height: 'h-8 sm:h-10 lg:h-12' },
+  { name: 'Dahua Technology', src: dahuaLogo, height: 'h-8 sm:h-10 lg:h-12' },
+  { name: 'Clean Water', src: cwLogo, height: 'h-11 sm:h-13 lg:h-15' },
+  { name: 'Microtek', src: microtekLogo, height: 'h-11 sm:h-13 lg:h-15' },
+  { name: 'CP PLUS', src: cpLogo, height: 'h-6 sm:h-8 lg:h-9' },
+  { name: 'E-CHEN', src: eChenLogo, height: 'h-8 sm:h-10 lg:h-12' },
+  { name: 'Exide Batteries', src: exideLogo, height: 'h-8 sm:h-10 lg:h-12' },
+  { name: 'Hi-Focus', src: hiFocusLogo, height: 'h-8 sm:h-10 lg:h-12' },
+  { name: 'Nile RO Cabinets', src: nileLogo, height: 'h-10 sm:h-12 lg:h-14' },
+  { name: 'Autom Tank Automation', src: automLogo, height: 'h-8 sm:h-10 lg:h-12' },
 ];
 
 export default function Categories() {
   return (
-    <section id="categories" className="py-6 md:py-10 bg-white text-slate-900 border-b border-slate-200/50 relative overflow-hidden">
+    <section id="products" className="py-6 md:py-10 bg-white text-slate-900 border-b border-slate-200/50 relative overflow-hidden scroll-mt-16 md:scroll-mt-20">
+      {/* Anchor alias to support legacy #categories links */}
+      <div id="categories" className="absolute -top-24 pointer-events-none opacity-0" aria-hidden="true" />
       {/* Background Ambient Glow Accents */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-red-500/5 rounded-full filter blur-3xl pointer-events-none -translate-y-1/2" />
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl pointer-events-none" />
@@ -189,7 +199,7 @@ export default function Categories() {
         {/* BRANDS WE WORK WITH INFINITE MARQUEE SECTION */}
         <div className="pt-6 pb-6 space-y-4 text-center overflow-hidden">
           <div className="space-y-2 max-w-3xl mx-auto px-4">
-            
+
             {/* Top Badge with Red Flanking Lines */}
             <div className="flex items-center justify-center gap-3 sm:gap-4">
               <div className="w-10 sm:w-14 md:w-16 h-[2px] bg-[#D9232D]"></div>
@@ -220,7 +230,7 @@ export default function Categories() {
           {/* INFINITE MARQUEE TICKER ROW */}
           <div className="relative w-full overflow-hidden select-none py-1">
             <div className="animate-marquee flex items-center gap-12 sm:gap-16 md:gap-20 whitespace-nowrap">
-              {[...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, idx) => (
+              {[...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, idx) => (
                 <div
                   key={idx}
                   className="flex items-center justify-center shrink-0 opacity-90 hover:opacity-100 hover:scale-110 transition-all cursor-pointer px-2"
@@ -240,7 +250,7 @@ export default function Categories() {
         {/* 1. SPECIFIC 768px & 1024px SCREEN SIZE BANNER (FOR 768px - 1279px SCREEN WIDTH) */}
         {/* ========================================================================= */}
         <div className="hidden md:flex xl:hidden rounded-3xl p-3.5 md:px-4 md:py-3.5 lg:px-6 lg:py-5 bg-gradient-to-r from-[#FFF0F2] via-[#FFF5F6] to-[#FFEBEF] border border-[#FFD8E0] shadow-xs items-center justify-between gap-2 md:gap-2.5 lg:gap-4 relative overflow-hidden">
-          
+
           {/* Left Block: Red Headset Circle + Title & Subtitle (Two-line subtitle) */}
           <div className="flex items-center gap-2 md:gap-2.5 lg:gap-3 z-10 shrink-0">
             <div className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-[#E50914] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/25">

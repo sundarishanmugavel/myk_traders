@@ -6,7 +6,7 @@ const STEPS = [
   {
     num: '01',
     title: 'Installation',
-    desc: 'Professional installation for a hassle-free start.',
+    desc: 'Professional doorstep installation for a smooth and hassle-free setup.',
     icon: Wrench,
     bgColor: 'bg-[#E8F2FF]',
     iconColor: 'text-[#0066FF]',
@@ -16,7 +16,7 @@ const STEPS = [
   {
     num: '02',
     title: 'Maintenance',
-    desc: 'Regular maintenance to keep everything running smoothly.',
+    desc: 'Regular scheduled maintenance to keep all systems running smoothly.',
     icon: Settings,
     bgColor: 'bg-[#E6F8ED]',
     iconColor: 'text-[#10B981]',
@@ -25,8 +25,8 @@ const STEPS = [
   },
   {
     num: '03',
-    title: 'Repair',
-    desc: 'Quick and reliable repairs when you need them.',
+    title: 'Repair & Spare Parts',
+    desc: 'Quick and reliable repairs with spare parts support for CCTV systems and water purifiers.',
     icon: Wrench,
     bgColor: 'bg-[#FFEBEB]',
     iconColor: 'text-[#EF4444]',
@@ -36,7 +36,7 @@ const STEPS = [
   {
     num: '04',
     title: 'Support',
-    desc: 'Friendly expert support, always just a call away.',
+    desc: 'Friendly expert technical support, always just a phone call away.',
     icon: Headset,
     bgColor: 'bg-[#FFF8E6]',
     iconColor: 'text-[#F59E0B]',
@@ -97,7 +97,7 @@ export default function Services() {
 
                       {/* Details */}
                       <div className="space-y-0.5">
-                        <span className={`text-[11px] lg:text-xs font-black ${step.iconColor} block tracking-wider`}>
+                        <span className="text-[11px] lg:text-xs font-black text-slate-400 block tracking-wider">
                           {step.num}
                         </span>
                         <h3 className="text-sm lg:text-base font-black text-[#0B1B3D] leading-snug">
@@ -170,29 +170,29 @@ export default function Services() {
               {STEPS.map((step, idx) => {
                 const Icon = step.icon;
                 return (
-                  <div key={idx} className="flex items-center justify-between relative">
+                  <div key={idx} className="flex items-start justify-between relative h-full">
 
-                    <div className="flex items-start gap-3.5">
+                    <div className="flex items-start gap-3.5 flex-1 min-w-0">
                       <div className={`w-14 h-14 sm:w-[3.75rem] sm:h-[3.75rem] rounded-full ${step.bgColor} ${step.iconColor} flex items-center justify-center shrink-0 shadow-xs`}>
                         <Icon size={26} strokeWidth={2.3} />
                       </div>
 
-                      <div className="space-y-0.5">
+                      <div className="space-y-0.5 min-w-0 flex-1">
                         <span className="text-xs sm:text-sm font-black text-slate-400 block tracking-wider">
                           {step.num}
                         </span>
-                        <h3 className="text-lg sm:text-xl font-black text-[#0B1B3D] leading-snug">
+                        <h3 className="text-base sm:text-lg xl:text-[1.1rem] font-black text-[#0B1B3D] leading-snug">
                           {step.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed pt-0.5 max-w-none sm:max-w-[210px]">
+                        <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed pt-0.5">
                           {step.desc}
                         </p>
                       </div>
                     </div>
 
                     {idx < STEPS.length - 1 && (
-                      <div className="hidden xl:block text-slate-300 font-light text-xl pl-2 self-center">
-                        <ArrowRight size={22} strokeWidth={1.8} />
+                      <div className="hidden xl:block text-slate-300 font-light text-xl pl-2 shrink-0 self-start mt-4">
+                        <ArrowRight size={20} strokeWidth={2} />
                       </div>
                     )}
                   </div>

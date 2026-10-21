@@ -173,11 +173,11 @@ export default function MagazineHero() {
       e.preventDefault();
       e.stopPropagation();
     }
-    const targetElement = document.getElementById('categories');
+    const targetElement = document.getElementById('products') || document.getElementById('categories');
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.location.hash = '#categories';
+      window.location.hash = '#products';
     }
   }, []);
 
@@ -195,6 +195,15 @@ export default function MagazineHero() {
   return (
     <section id="hero" className="relative w-full bg-slate-50 text-slate-900 select-none pt-16 md:pt-0">
       
+      {/* Hidden SEO Heading & Structure for Search Engines */}
+      <div className="sr-only">
+        <h1>MYK Traders - Premium Inverters, Solar Panels, Batteries & CCTV in Ramanathapuram</h1>
+        <p>
+          Authorised dealer and service center for Luminous Inverters, Solar Power Solutions, Tubular Batteries,
+          HD CCTV Cameras, RO Water Purifiers, and Solar Water Heaters in Pattinamkathan, Ramanathapuram, Tamil Nadu.
+        </p>
+      </div>
+
       {/* 3D HORIZONTAL FLIP MAGAZINE HERO CANVAS (UNIFIED ALL SCREEN SIZES) */}
       <div 
         ref={containerRef}
@@ -223,7 +232,7 @@ export default function MagazineHero() {
 
         {/* Clickable Overlay Hotspot over EXPLORE PRODUCTS CTA Button */}
         <a
-          href="#categories"
+          href="#products"
           onClick={handleExploreClick}
           className="absolute z-20 cursor-pointer block rounded-full focus:outline-none transition-transform active:scale-95"
           style={{

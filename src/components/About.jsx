@@ -1,6 +1,6 @@
 import React from 'react';
-import { Users, Settings, Headset, Gem, Wrench, ShieldCheck, MapPin, PhoneCall } from 'lucide-react';
-import aboutShowcaseImg from '../assets/about_showcase.webp';
+import { Users, Settings, Headset, Gem, Wrench, ShieldCheck, MapPin, Package, PhoneCall } from 'lucide-react';
+import aboutShowcaseImg from '../assets/about_shaowcase_2.png';
 
 function CountUpNumber({ end, suffix = "", duration = 2000 }) {
   const [count, setCount] = React.useState(0);
@@ -54,82 +54,57 @@ function CountUpNumber({ end, suffix = "", duration = 2000 }) {
 }
 
 export default function About() {
-  // Data for 1024px Layout
-
-  const whyChooseUsCards1024 = [
+  const whyChooseUsData = [
     {
       num: "01",
       title: "Genuine Products",
       desc: "Trusted brands for residential and commercial needs.",
       icon: Gem,
-      badgeBg: "bg-red-100 text-red-600 border border-red-200",
-      cardBg: "bg-[#FFF2F4] border border-[#FFDADA]",
-      numColor: "text-red-600"
+      iconColor: "text-red-500",
+      badgeBg: "bg-[#FFEAEA]",
+      borderColor: "border-red-100",
     },
     {
       num: "02",
       title: "Expert Installation",
       desc: "Professional doorstep installation and setup by experienced technicians.",
       icon: Wrench,
-      badgeBg: "bg-blue-100 text-blue-600 border border-blue-200",
-      cardBg: "bg-[#F0F6FF] border border-[#DCE8FF]",
-      numColor: "text-blue-600"
+      iconColor: "text-blue-500",
+      badgeBg: "bg-[#E8F2FF]",
+      borderColor: "border-blue-100",
     },
     {
       num: "03",
       title: "Complete Service",
       desc: "Installation, maintenance, repairs and after-sales support.",
       icon: ShieldCheck,
-      badgeBg: "bg-emerald-100 text-emerald-600 border border-emerald-200",
-      cardBg: "bg-[#F0FDF4] border border-[#DCFCE7]",
-      numColor: "text-emerald-600"
+      iconColor: "text-emerald-500",
+      badgeBg: "bg-[#E6F8ED]",
+      borderColor: "border-emerald-100",
     },
     {
       num: "04",
+      title: "Spare Parts Availability",
+      desc: "CCTV and water purifier spare parts available to support repairs and maintenance.",
+      icon: Package,
+      iconColor: "text-purple-500",
+      badgeBg: "bg-[#F3E8FF]",
+      borderColor: "border-purple-100",
+    },
+    {
+      num: "05",
       title: "Local Support",
       desc: "Serving customers across Ramanathapuram district with dependable local assistance.",
       icon: MapPin,
-      badgeBg: "bg-amber-100 text-amber-600 border border-amber-200",
-      cardBg: "bg-[#FFFBEB] border border-[#FDE68A]",
-      numColor: "text-amber-600"
-    }
-  ];
-
-  // Data for Default Layout (< 1024px and >= 1280px)
-  const whyChooseUsDataDefault = [
-    {
-      num: "01",
-      title: "Genuine Products",
-      desc: "Trusted brands for residential and commercial needs.",
-      icon: Gem,
-      borderColor: "border-red-200/90 text-red-600 bg-red-50/40"
+      iconColor: "text-amber-500",
+      badgeBg: "bg-[#FEF3C7]",
+      borderColor: "border-amber-100",
     },
-    {
-      num: "02",
-      title: "Expert Installation",
-      desc: "Professional doorstep installation and setup by experienced technicians.",
-      icon: Wrench,
-      borderColor: "border-blue-200/90 text-blue-600 bg-blue-50/40"
-    },
-    {
-      num: "03",
-      title: "Complete Service",
-      desc: "Installation, maintenance, repairs and after-sales support.",
-      icon: ShieldCheck,
-      borderColor: "border-emerald-200/90 text-emerald-600 bg-emerald-50/40"
-    },
-    {
-      num: "04",
-      title: "Local Support",
-      desc: "Serving customers across Ramanathapuram district with dependable local assistance.",
-      icon: MapPin,
-      borderColor: "border-purple-200/90 text-purple-600 bg-purple-50/40"
-    }
   ];
 
   return (
     <section id="about" className="pt-6 sm:pt-8 md:pt-4 lg:pt-5 xl:pt-10 pb-6 sm:pb-8 md:pb-10 bg-slate-50 text-slate-900 relative overflow-hidden border-b border-slate-200/50">
-      
+
       {/* Background Ambient Glow Gradients & Pattern */}
       <div className="absolute inset-0 pointer-events-none z-0 bg-dot-pattern opacity-60"></div>
       <div className="absolute -top-24 -left-20 w-96 h-96 bg-red-500/5 rounded-full filter blur-3xl pointer-events-none"></div>
@@ -146,7 +121,7 @@ export default function About() {
 
             {/* LEFT SIDE: TEXT CONTENT & STATS */}
             <div className="col-span-7 space-y-4 lg:space-y-5">
-              
+
               {/* Category Header Label */}
               <div className="flex items-center gap-2">
                 <div className="w-7 h-[2px] bg-[#D9232D] rounded-full"></div>
@@ -173,14 +148,14 @@ export default function About() {
 
               {/* 3 STAT COUNTERS IN A ROW WITH CIRCULAR ICONS */}
               <div className="flex items-center justify-between pt-2 max-w-md border-t border-slate-100">
-                
+
                 {/* Stat 1 */}
                 <div className="flex flex-col items-start gap-1">
                   <div className="w-8 h-8 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-[#D9232D]">
                     <Users size={15} />
                   </div>
                   <div className="text-2xl sm:text-3xl font-black text-[#0B1B3D]">
-                    <CountUpNumber end={7} suffix="+" duration={1800} />
+                    <CountUpNumber end={9} suffix="+" duration={1800} />
                   </div>
                   <div className="text-[11px] sm:text-xs font-medium text-slate-500 leading-tight">
                     Years of<br />Experience
@@ -233,39 +208,36 @@ export default function About() {
           </div>
         </div>
 
-        {/* WHY CHOOSE MYK? CARD (CARD 2 - 2x2 GRID OF FEATURE CARDS) MATCHING 1024px/768px REFERENCE DESIGN */}
-        <div className="rounded-3xl bg-white border border-slate-200/80 p-6 lg:p-9 shadow-xs space-y-5 lg:space-y-6">
-          
+        {/* WHY CHOOSE MYK? CARD MATCHING REFERENCE DESIGN */}
+        <div className="rounded-3xl bg-white border border-slate-200/80 p-6 lg:p-8 shadow-xs space-y-4">
+
           {/* Section Header */}
           <div className="flex items-center gap-2">
-            <div className="w-7 h-[2px] bg-[#D9232D] rounded-full"></div>
-            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#0B1B3D]">
+            <div className="w-8 h-[2.5px] bg-[#EF4444] rounded-full"></div>
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0B1B3D]">
               WHY CHOOSE MYK?
             </span>
           </div>
 
-          {/* 2x2 Feature Grid */}
-          <div className="grid grid-cols-2 gap-3.5 lg:gap-4">
-            {whyChooseUsCards1024.map((card) => {
-              const IconComp = card.icon;
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {whyChooseUsData.map((item) => {
+              const IconComp = item.icon;
               return (
                 <div
-                  key={card.num}
-                  className={`p-4 lg:p-5 rounded-2xl ${card.cardBg} flex items-start gap-3 lg:gap-4 transition-transform hover:-translate-y-0.5`}
+                  key={item.num}
+                  className="flex items-center gap-3.5 py-1"
                 >
-                  <div className={`w-10 h-10 lg:w-11 lg:h-11 rounded-full ${card.badgeBg} flex items-center justify-center shrink-0 shadow-xs`}>
-                    <IconComp size={18} className="lg:hidden" />
-                    <IconComp size={20} className="hidden lg:block" />
+                  <div className={`w-11 h-11 rounded-full ${item.badgeBg} ${item.iconColor} flex items-center justify-center shrink-0 shadow-xs`}>
+                    <IconComp size={20} strokeWidth={2.2} />
                   </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs font-extrabold font-mono ${card.numColor}`}>{card.num}</span>
-                      <h3 className="text-sm lg:text-base font-black text-[#0B1B3D] tracking-tight">
-                        {card.title}
-                      </h3>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                      {card.desc}
+                  <div className="space-y-0.5 min-w-0 flex-1">
+                    <h3 className="text-sm font-bold text-[#0B1B3D] tracking-tight flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
+                      <span className="truncate">{item.title}</span>
+                    </h3>
+                    <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                      {item.desc}
                     </p>
                   </div>
                 </div>
@@ -281,7 +253,7 @@ export default function About() {
       {/* 2. MOBILE LAYOUT (< 768px ONLY) */}
       {/* ========================================================================= */}
       <div className="block md:hidden w-full max-w-[1380px] mx-auto px-[10px] sm:px-[17px] relative z-10 space-y-3.5">
-        
+
         {/* 1. Header + Paragraphs */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
@@ -324,7 +296,7 @@ export default function About() {
               <Users size={16} />
             </div>
             <div className="text-2xl font-black text-slate-900">
-              <CountUpNumber end={7} suffix="+" duration={1800} />
+              <CountUpNumber end={9} suffix="+" duration={1800} />
             </div>
             <div className="text-xs font-medium text-slate-500 leading-tight">
               Years of<br />Experience
@@ -359,27 +331,27 @@ export default function About() {
         </div>
 
         {/* 4. WHY CHOOSE MYK? LIST */}
-        <div className="space-y-4 pt-2">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-[2px] bg-red-600 rounded-full"></div>
-            <span className="text-xs font-bold text-slate-800 tracking-wider uppercase">
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-8 h-[2.5px] bg-[#EF4444] rounded-full"></div>
+            <span className="text-xs font-black text-[#0B1B3D] tracking-[0.2em] uppercase">
               WHY CHOOSE MYK?
             </span>
           </div>
 
-          <div className="space-y-3.5">
-            {whyChooseUsDataDefault.map((item) => {
+          <div className="space-y-2.5">
+            {whyChooseUsData.map((item) => {
               const IconComponent = item.icon;
               return (
-                <div 
-                  key={item.num} 
-                  className="flex items-start gap-3.5 pb-3.5 border-b border-slate-200/60 last:border-none last:pb-0"
+                <div
+                  key={item.num}
+                  className="flex items-center gap-3 py-1"
                 >
-                  <div className={`w-7 h-7 rounded-full border ${item.borderColor} flex items-center justify-center shrink-0 mt-0.5`}>
-                    <IconComponent size={14} />
+                  <div className={`w-10 h-10 rounded-full ${item.badgeBg} ${item.iconColor} flex items-center justify-center shrink-0 shadow-xs`}>
+                    <IconComponent size={18} strokeWidth={2.2} />
                   </div>
-                  <div className="space-y-0.5 flex-1">
-                    <h3 className="text-sm font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                  <div className="space-y-0.5 flex-1 min-w-0">
+                    <h3 className="text-sm font-bold text-[#0B1B3D] tracking-tight flex items-center gap-1.5">
                       <span className="text-xs font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
                       <span>{item.title}</span>
                     </h3>
@@ -431,7 +403,7 @@ export default function About() {
                   <Users size={16} />
                 </div>
                 <div className="text-3xl font-black text-slate-900">
-                  <CountUpNumber end={7} suffix="+" duration={1800} />
+                  <CountUpNumber end={9} suffix="+" duration={1800} />
                 </div>
                 <div className="text-xs font-medium text-slate-500 leading-tight">
                   Years of<br />Experience
@@ -479,31 +451,31 @@ export default function About() {
           </div>
 
           {/* RIGHT COLUMN: WHY CHOOSE MYK FEATURE LIST */}
-          <div className="col-span-4 space-y-5 pl-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-[2px] bg-red-600 rounded-full"></div>
-              <span className="text-xs font-bold text-slate-800 tracking-wider uppercase">
+          <div className="col-span-4 space-y-3.5 pl-2">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-[2.5px] bg-[#EF4444] rounded-full"></div>
+              <span className="text-xs font-black text-[#0B1B3D] tracking-[0.2em] uppercase">
                 WHY CHOOSE MYK?
               </span>
             </div>
 
-            <div className="space-y-4">
-              {whyChooseUsDataDefault.map((item) => {
+            <div className="space-y-3.5">
+              {whyChooseUsData.map((item) => {
                 const IconComponent = item.icon;
                 return (
-                  <div 
-                    key={item.num} 
-                    className="flex items-start gap-3.5 pb-4 border-b border-slate-200/60 last:border-none last:pb-0"
+                  <div
+                    key={item.num}
+                    className="flex items-center gap-3.5 py-1.5"
                   >
-                    <div className={`w-7 h-7 rounded-full border ${item.borderColor} flex items-center justify-center shrink-0 mt-0.5`}>
-                      <IconComponent size={14} />
+                    <div className={`w-11 h-11 rounded-full ${item.badgeBg} ${item.iconColor} flex items-center justify-center shrink-0 shadow-xs`}>
+                      <IconComponent size={20} strokeWidth={2.2} />
                     </div>
-                    <div className="space-y-0.5 flex-1">
-                      <h3 className="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
+                    <div className="space-y-0.5 flex-1 min-w-0">
+                      <h3 className="text-sm sm:text-base font-bold text-[#0B1B3D] tracking-tight flex items-center gap-2">
+                        <span className="text-xs sm:text-sm font-bold text-slate-400 font-mono tracking-wider">{item.num} —</span>
                         <span>{item.title}</span>
                       </h3>
-                      <p className="text-sm text-slate-500 leading-relaxed font-normal">
+                      <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
                         {item.desc}
                       </p>
                     </div>
