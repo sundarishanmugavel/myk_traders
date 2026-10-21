@@ -9,7 +9,7 @@ import product6Img from '../assets/tank.webp';
 
 // MOBILE ONLY PRODUCT IMAGES (Screen size <= 640px / 425x645)
 import mobCctvImg from '../assets/MOB_CCTV.webp';
-import mobInverterImg from '../assets/mob_inverter_2.png';
+import mobInverterImg from '../assets/mob_Inverter_2.png';
 import mobSolarImg from '../assets/MOB_SOLAR.webp';
 import mobMotorImg from '../assets/spares_mob.png';
 import mobTankImg from '../assets/MOB_TANK.webp';
