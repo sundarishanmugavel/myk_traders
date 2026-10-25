@@ -1,17 +1,16 @@
-import React from 'react';
-import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, Sun, Sliders, PhoneCall } from 'lucide-react';
+import { Headset, ArrowRight, Droplets, Zap, ShieldCheck, Settings, PhoneCall } from 'lucide-react';
 import product1Img from '../assets/ww-new.webp';
 import product2Img from '../assets/cctv.webp';
-import product3Img from '../assets/lap_inverter.png';
+import product3Img from '../assets/lap_inverter.webp';
 import product4Img from '../assets/solar panel.webp';
-import product5Img from '../assets/spare_lap.png';
+import product5Img from '../assets/spare_lap.webp';
 import product6Img from '../assets/tank.webp';
 
 // MOBILE ONLY PRODUCT IMAGES (Screen size <= 640px / 425x645)
 import mobCctvImg from '../assets/MOB_CCTV.webp';
-import mobInverterImg from '../assets/mob_Inverter_2.png';
+import mobInverterImg from '../assets/mob_Inverter_2.webp';
 import mobSolarImg from '../assets/MOB_SOLAR.webp';
-import mobMotorImg from '../assets/spares_mob.png';
+import mobMotorImg from '../assets/spares_mob.webp';
 import mobTankImg from '../assets/MOB_TANK.webp';
 
 // 768PX TABLET PRODUCT IMAGES
@@ -20,25 +19,16 @@ import rectTankSensorImg from '../assets/RECT_TANK_SENSOR.webp';
 
 // BRAND LOGO IMAGE ASSETS
 import hiFocusLogo from '../assets/hi_focus.webp';
-import eChenLogo from '../assets/e-chen.png';
+import eChenLogo from '../assets/e-chen.webp';
 import dahuaLogo from '../assets/Dahua_Technology_logo.svg';
-import cwLogo from '../assets/cw.png';
-import cpLogo from '../assets/cp logo.png';
+import cwLogo from '../assets/cw.webp';
+import cpLogo from '../assets/cp logo.webp';
 import hikvisionLogo from '../assets/Hikvision-Logo.webp';
 import luminousLogo from '../assets/LUMINOUS.webp';
 import microtekLogo from '../assets/Microtek-logo.webp';
-import nileLogo from '../assets/nile.png';
-import exideLogo from '../assets/Exide-Batteries-Logo-.png';
-import automLogo from '../assets/autom.png';
-
-const PRODUCTS_GRID = [
-  { id: 1, title: 'Water Purifiers', image: product1Img, mobImage: rectPurifierImg },
-  { id: 2, title: 'CCTV & Surveillance', image: product2Img, mobImage: mobCctvImg },
-  { id: 3, title: 'Inverters & Batteries', image: product3Img, mobImage: mobInverterImg },
-  { id: 4, title: 'Solar Solutions', image: product4Img, mobImage: mobSolarImg },
-  { id: 5, title: 'Water Motors', image: product5Img, mobImage: mobMotorImg },
-  { id: 6, title: 'Tank Automation', image: product6Img, mobImage: mobTankImg },
-];
+import nileLogo from '../assets/nile.webp';
+import exideLogo from '../assets/Exide-Batteries-Logo-.webp';
+import automLogo from '../assets/autom.webp';
 
 const BRAND_LOGOS = [
   { name: 'Hikvision', src: hikvisionLogo, height: 'h-12 sm:h-16 lg:h-18' },
@@ -84,114 +74,164 @@ export default function Categories() {
           </p>
         </div>
 
+        {/* Complete Semantic Real HTML DOM Layer for Googlebot & SEO Crawlers (Zero visual impact) */}
+        <div className="sr-only">
+          <h2>Authorised Sales &amp; Service Categories in Ramanathapuram</h2>
+          
+          <article>
+            <h3>CCTV Camera Installation &amp; Service in Ramanathapuram</h3>
+            <p>
+              Authorised dealer and repair service center for Hikvision, CP PLUS, Dahua, and Hi-Focus CCTV cameras in Ramanathapuram.
+              HD dome cameras, IP surveillance, wireless Wi-Fi bullet cameras, 360-degree PTZ night vision, mobile phone remote monitoring,
+              concealed wiring, and annual maintenance contracts (AMC) across Ramanathapuram, Pattinamkathan, Rameswaram, Kilakarai, and Paramakudi.
+            </p>
+          </article>
+
+          <article>
+            <h3>Luminous Inverter &amp; Tubular Battery Dealer in Ramanathapuram</h3>
+            <p>
+              Authorised dealer for Luminous pure sinewave home inverters, Microtek UPS, and Exide heavy-duty tall tubular batteries (150Ah, 200Ah, 220Ah)
+              in Ramanathapuram. Coastal heat-resistant batteries, fast charging, old battery exchange with best buyback value, and free doorstep fitting.
+            </p>
+          </article>
+
+          <article>
+            <h3>Rooftop Solar Solutions &amp; Solar Panels in Ramanathapuram</h3>
+            <p>
+              Tier-1 Mono PERC on-grid and off-grid rooftop solar power plants in Ramanathapuram with PM Surya Ghar Muft Bijli Yojana government subsidy assistance
+              up to ₹78,000. Complete TNEB net metering approvals, bi-facial solar panels, and solar water heaters.
+            </p>
+          </article>
+
+          <article>
+            <h3>RO Water Purifier Sales &amp; Service in Ramanathapuram</h3>
+            <p>
+              Customized multi-stage RO+UV+UF+Copper water purifiers and commercial RO plants for Ramanathapuram high TDS groundwater.
+              Authorised sales and doorstep service for Clean Water, Nile designer cabinets, E-Chen booster pumps, and Filmtec membranes.
+            </p>
+          </article>
+
+          <article>
+            <h3>Water Motors, Submersible Pumps &amp; Spares in Ramanathapuram</h3>
+            <p>
+              Crompton, Havells domestic monobloc pumps, open-well and deep borewell submersible water motors with 100% copper winding,
+              voltage fluctuation protection, genuine impellers, and spare parts in Ramanathapuram.
+            </p>
+          </article>
+
+          <article>
+            <h3>Automatic Water Level Controllers &amp; Tank Automation in Ramanathapuram</h3>
+            <p>
+              Autom stainless steel magnetic sensor automatic water level controllers in Ramanathapuram. Automatic motor ON/OFF,
+              dry-run protection, overhead tank overflow prevention, and zero-shock magnetic sensors.
+            </p>
+          </article>
+        </div>
+
         {/* SINGLE SCREEN BENTO BOX PRODUCT GRID (2 COLUMNS ON TABLET 768-1024px, 4 COLUMNS ON DESKTOP 1280px+) */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-4.5 md:gap-5 xl:gap-4.5 tablet-2col-grid">
 
           {/* 1. Water Purifiers */}
           <a
             href="#products"
+            aria-label="Water Purifiers sales and service in Ramanathapuram"
             className="col-span-1 row-span-1 xl:col-span-1 xl:row-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-auto"
           >
-            <img
-              src={rectPurifierImg}
-              alt="Water Purifiers"
-              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product1Img}
-              alt="Water Purifiers"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product1Img} />
+              <img
+                src={rectPurifierImg}
+                alt="Water Purifiers"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
           {/* 2. CCTV & Surveillance */}
           <a
             href="#products"
+            aria-label="CCTV camera installation and service in Ramanathapuram"
             className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
-            <img
-              src={mobCctvImg}
-              alt="CCTV & Surveillance"
-              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product2Img}
-              alt="CCTV & Surveillance"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product2Img} />
+              <img
+                src={mobCctvImg}
+                alt="CCTV & Surveillance"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
           {/* 3. Inverters & Batteries */}
           <a
             href="#products"
+            aria-label="Luminous inverters and tubular batteries in Ramanathapuram"
             className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
-            <img
-              src={mobInverterImg}
-              alt="Inverters & Batteries"
-              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product3Img}
-              alt="Inverters & Batteries"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product3Img} />
+              <img
+                src={mobInverterImg}
+                alt="Inverters & Batteries"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
           {/* 4. Solar Solutions */}
           <a
             href="#products"
+            aria-label="Rooftop solar panels and subsidy support in Ramanathapuram"
             className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
-            <img
-              src={mobSolarImg}
-              alt="Solar Solutions"
-              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product4Img}
-              alt="Solar Solutions"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product4Img} />
+              <img
+                src={mobSolarImg}
+                alt="Solar Solutions"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
           {/* 5. Water Motors */}
           <a
             href="#products"
+            aria-label="Water motors and submersible pumps in Ramanathapuram"
             className="group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
-            <img
-              src={mobMotorImg}
-              alt="Water Motors"
-              className="block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product5Img}
-              alt="Water Motors"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product5Img} />
+              <img
+                src={mobMotorImg}
+                alt="Water Motors"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
           {/* 6. Tank Automation */}
           <a
             href="#products"
+            aria-label="Automatic water level controllers and sensor motors in Ramanathapuram"
             className="col-span-1 row-span-1 md:col-span-1 xl:col-span-2 group block relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer bg-white border border-slate-100/80 h-[220px] xs:h-[240px] sm:h-52 md:h-[240px] lg:h-[305px] xl:h-52"
           >
-            <img
-              src={rectTankSensorImg}
-              alt="Tank Automation"
-              className="hidden md:block xl:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={mobTankImg}
-              alt="Tank Automation"
-              className="block md:hidden w-full h-full object-cover rounded-xl mx-auto"
-            />
-            <img
-              src={product6Img}
-              alt="Tank Automation"
-              className="hidden xl:block w-full h-full object-cover rounded-xl mx-auto"
-            />
+            <picture className="w-full h-full block">
+              <source media="(min-width: 1280px)" srcSet={product6Img} />
+              <source media="(min-width: 768px)" srcSet={rectTankSensorImg} />
+              <img
+                src={mobTankImg}
+                alt="Tank Automation"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-xl mx-auto"
+              />
+            </picture>
           </a>
 
         </div>
@@ -341,7 +381,7 @@ export default function Categories() {
           {/* Right Block: Red Capsule Button with Phone Icon inside White Circle */}
           <div className="flex items-center justify-end z-10 shrink-0">
             <a
-              href="tel:06380073771"
+              href="tel:+916380073771"
               className="inline-flex items-center gap-1.5 md:gap-2 lg:gap-2.5 bg-gradient-to-r from-[#FF0A26] to-[#DC2626] hover:from-[#E31B23] hover:to-[#B91C1C] text-white text-[9.5px] md:text-[10.5px] lg:text-xs font-black uppercase tracking-wider pl-1.5 pr-3 md:pl-2 md:pr-4 lg:pr-5 py-1.5 md:py-2 rounded-full shadow-md shadow-red-500/30 hover:shadow-lg hover:shadow-red-500/40 transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer shrink-0"
             >
               <div className="w-5.5 h-5.5 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 rounded-full bg-white text-red-600 flex items-center justify-center shrink-0 shadow-xs">

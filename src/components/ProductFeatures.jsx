@@ -1,5 +1,4 @@
-import React from 'react';
-import { Truck, ShieldCheck, Headphones, RefreshCw, Star, CheckCircle } from 'lucide-react';
+import { Truck, ShieldCheck, Headphones, RefreshCw } from 'lucide-react';
 
 const FEATURES = [
   {

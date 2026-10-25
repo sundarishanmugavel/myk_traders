@@ -1,4 +1,4 @@
-import wpImg from '../assets/water.png';
+import wpImg from '../assets/water.webp';
 import cctvImg from '../assets/cctv_new.webp';
 import inverterImg from '../assets/inverter_1.webp';
 import sensorImg from '../assets/sensor.webp';

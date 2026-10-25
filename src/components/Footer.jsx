@@ -1,5 +1,4 @@
-import React from 'react';
-import logoImg from '../assets/image.png';
+import logoImg from '../assets/image.webp';
 import { PhoneCall } from 'lucide-react';
 
 export default function Footer() {
@@ -64,9 +63,9 @@ export default function Footer() {
 
         {/* Phone & Copyright */}
         <div className="flex items-center gap-3 sm:gap-4 md:max-lg:gap-2 text-xs sm:text-sm md:max-lg:text-[10px] lg:max-xl:text-xs text-slate-300">
-          <a href="tel:06380073771" className="flex items-center gap-1.5 sm:gap-2 hover:text-white font-bold transition-colors">
+          <a href="tel:+916380073771" className="flex items-center gap-1.5 sm:gap-2 hover:text-white font-bold transition-colors">
             <PhoneCall size={12} className="text-red-400 shrink-0 md:max-lg:w-3 md:max-lg:h-3" />
-            <span className="text-slate-200 font-semibold text-xs sm:text-sm md:max-lg:text-[10.5px] lg:max-xl:text-xs">063800 73771</span>
+            <span className="text-slate-200 font-semibold text-xs sm:text-sm md:max-lg:text-[10.5px] lg:max-xl:text-xs">+91 63800 73771</span>
           </a>
           <span className="text-slate-700">|</span>
           <span className="text-slate-400 text-xs sm:text-sm md:max-lg:text-[10px] lg:max-xl:text-xs">© {new Date().getFullYear()} MYK Traders</span>

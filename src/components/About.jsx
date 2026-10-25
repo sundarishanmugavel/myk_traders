@@ -1,6 +1,6 @@
 import React from 'react';
-import { Users, Settings, Headset, Gem, Wrench, ShieldCheck, MapPin, Package, PhoneCall } from 'lucide-react';
-import aboutShowcaseImg from '../assets/about_shaowcase_2.png';
+import { Users, Settings, Headset, Gem, Wrench, ShieldCheck, MapPin, Package } from 'lucide-react';
+import aboutShowcaseImg from '../assets/about_shaowcase_2.webp';
 
 function CountUpNumber({ end, suffix = "", duration = 2000 }) {
   const [count, setCount] = React.useState(0);
@@ -43,7 +43,7 @@ function CountUpNumber({ end, suffix = "", duration = 2000 }) {
     };
 
     animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
   }, [hasStarted, end, duration]);
 
   return (

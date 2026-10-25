@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PhoneCall, Menu, X } from 'lucide-react';
-import logoImg from '../assets/image.png';
+import logoImg from '../assets/image.webp';
 
 const NAV_LINKS = [
   { name: 'Home', href: '#hero' },
@@ -64,7 +64,7 @@ export default function Navbar() {
             {/* MOBILE ONLY CENTER CTA BUTTON */}
             <div className="flex md:hidden items-center justify-center flex-1 mx-1">
               <a
-                href="tel:06380073771"
+                href="tel:+916380073771"
                 className="group relative flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white text-xs font-black animate-red-halo hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden border border-red-400/50 shadow-md"
               >
                 {/* Continuous Shimmer Light Beam Pass */}
@@ -92,7 +92,7 @@ export default function Navbar() {
             {/* RIGHT SIDE: TALK TO AN EXPERT BUTTON WITH ADVANCED ANIMATIONS */}
             <div className="hidden md:flex items-center gap-3 shrink-0">
               <a
-                href="tel:06380073771"
+                href="tel:+916380073771"
                 className="group relative flex items-center gap-3 lg:gap-4 px-4 py-2 lg:px-6 lg:py-2.5 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white animate-red-halo hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden border border-red-400/50 shadow-md"
               >
                 {/* Continuous Shimmer Light Beam Pass */}
@@ -108,7 +108,7 @@ export default function Navbar() {
                     Talk to an Expert
                   </span>
                   <span className="text-xs lg:text-base font-black text-white tracking-tight leading-none">
-                    063800 73771
+                    +91 63800 73771
                   </span>
                 </div>
               </a>

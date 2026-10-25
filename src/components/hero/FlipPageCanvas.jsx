@@ -1,6 +1,8 @@
-import React, { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { HERO_PAGES } from '../../data/heroPages';
+import { createPageCanvasTexture } from '../../utils/createPageTexture';
 
 // Full-Viewport 3D Deformable Magazine Page Mesh Component (100x100 Subdivided Mesh)
 function FlippingPageMesh({ frontTexture, progress }) {
@@ -137,7 +139,37 @@ function PageShadow({ progress }) {
   );
 }
 
-export default function FlipPageCanvas({ currentTexture, nextTexture, flipProgress }) {
+export default function FlipPageCanvas({
+  currentIdx = 0,
+  nextIdx = 1,
+  flipProgress,
+  isMobile = false,
+  containerAspect = 16 / 9,
+  currentTexture: propCurrentTexture,
+  nextTexture: propNextTexture,
+}) {
+  const [, setTextureVersion] = useState(0);
+
+  // Pre-render page canvas textures locked to exact container aspect ratio
+  const pageTextures = useMemo(() => {
+    if (propCurrentTexture) return [];
+    if (typeof document === 'undefined') return [];
+    return HERO_PAGES.map((page) =>
+      createPageCanvasTexture(
+        page,
+        () => {
+          // Trigger React re-render when texture canvas finishes drawing image
+          setTextureVersion((v) => v + 1);
+        },
+        isMobile,
+        isMobile ? containerAspect : 16 / 9
+      )
+    );
+  }, [propCurrentTexture, isMobile, containerAspect]);
+
+  const currentTexture = propCurrentTexture || pageTextures[currentIdx];
+  const nextTexture = propNextTexture || pageTextures[nextIdx];
+
   return (
     <div className="w-full h-full relative cursor-grab active:cursor-grabbing select-none">
       <Canvas

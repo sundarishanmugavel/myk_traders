@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CATEGORIES, PRODUCTS } from '../data/products';
 import { CheckCircle2, MessageSquare, PhoneCall } from 'lucide-react';
 
@@ -93,7 +93,7 @@ export default function ProductCatalogue() {
               {/* Action Buttons with Advanced Animations */}
               <div className="pt-2 flex items-center gap-3">
                 <a
-                  href="tel:06380073771"
+                  href="tel:+916380073771"
                   className="group relative flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-black tracking-wider uppercase text-white bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 animate-blue-halo hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden border border-cyan-400/40 shadow-lg"
                 >
                   {/* Continuous Shimmer Light Beam Pass */}

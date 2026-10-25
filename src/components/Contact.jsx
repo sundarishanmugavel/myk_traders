@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapPin, Phone, Mail, ArrowRight, Maximize2, Plus, Minus } from 'lucide-react';
 
 export default function Contact() {
@@ -65,7 +64,7 @@ export default function Contact() {
 
               {/* 2. Call Us */}
               <a
-                href="tel:06380073771"
+                href="tel:+916380073771"
                 className="bg-white rounded-2xl p-3.5 sm:p-4 lg:p-4.5 border border-slate-100 shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group block"
               >
                 <div className="flex items-center gap-3 lg:gap-4">

@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './components/Navbar';
 import MagazineHero from './components/hero/MagazineHero';
 import About from './components/About';

@@ -1,14 +1,20 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback, lazy, Suspense, useSyncExternalStore } from 'react';
 import gsap from 'gsap';
 import { HERO_PAGES } from '../../data/heroPages';
-import { createPageCanvasTexture } from '../../utils/createPageTexture';
-import FlipPageCanvas from './FlipPageCanvas';
 import HeroControls from './HeroControls';
+
+// Lazy load Three.js 3D canvas so initial bundle is lightweight and fast
+const FlipPageCanvas = lazy(() => import('./FlipPageCanvas'));
+
+const emptySubscribe = () => () => {};
+function useIsMounted() {
+  return useSyncExternalStore(emptySubscribe, () => true, () => false);
+}
 
 export default function MagazineHero() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
-  const [, setTextureVersion] = useState(0);
+  const isMounted = useIsMounted();
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   const containerRef = useRef(null);
   const [containerAspect, setContainerAspect] = useState(() => {
@@ -18,6 +24,7 @@ export default function MagazineHero() {
 
   const flipProgress = useRef(0);
   const startX = useRef(0);
+  const startY = useRef(0);
   const isPointerDown = useRef(false);
 
   const totalPages = HERO_PAGES.length;
@@ -42,24 +49,6 @@ export default function MagazineHero() {
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
-
-  // Pre-render page canvas textures locked to exact container aspect ratio
-  const pageTextures = useMemo(() => {
-    return HERO_PAGES.map((page) =>
-      createPageCanvasTexture(
-        page,
-        () => {
-          // Trigger React re-render when texture canvas finishes drawing image
-          setTextureVersion((v) => v + 1);
-        },
-        isMobile,
-        isMobile ? containerAspect : 16 / 9
-      )
-    );
-  }, [isMobile, containerAspect]);
-
-  const currentTexture = pageTextures[currentIdx];
-  const nextTexture = pageTextures[nextIdx];
 
   // Perform full GSAP physical page turn to next page seamlessly
   const flipToNext = useCallback(() => {
@@ -119,12 +108,13 @@ export default function MagazineHero() {
   const handlePointerDown = (e) => {
     if (isFlipping) return;
     isPointerDown.current = true;
-    startX.current = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+    startX.current = e.clientX ?? 0;
+    startY.current = e.clientY ?? 0;
   };
 
   const handlePointerMove = (e) => {
     if (!isPointerDown.current || isFlipping) return;
-    const currentX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+    const currentX = e.clientX ?? 0;
     const deltaX = startX.current - currentX;
 
     // Map drag displacement directly to 0..1 page turn progress
@@ -138,17 +128,20 @@ export default function MagazineHero() {
     isPointerDown.current = false;
 
     if (e && containerRef.current) {
-      const currentX = e.clientX || (e.changedTouches && e.changedTouches[0]?.clientX) || 0;
-      const currentY = e.clientY || (e.changedTouches && e.changedTouches[0]?.clientY) || 0;
+      const currentX = e.clientX ?? 0;
+      const currentY = e.clientY ?? 0;
       const deltaX = Math.abs(currentX - startX.current);
+      const deltaY = Math.abs(currentY - startY.current);
 
-      if (deltaX < 12) {
+      // Check if user tapped without dragging (tap distance < 12px)
+      if (deltaX < 12 && deltaY < 12) {
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = (currentX - rect.left) / rect.width;
         const clickY = (currentY - rect.top) / rect.height;
 
-        const isDesktopBtn = !isMobile && clickX >= 0.04 && clickX <= 0.45 && clickY >= 0.52 && clickY <= 0.88;
-        const isMobileBtn = isMobile && clickX >= 0.08 && clickX <= 0.92 && clickY >= 0.58 && clickY <= 0.90;
+        // Accurate button bounding boxes matching canvas button geometry
+        const isDesktopBtn = !isMobile && clickX >= 0.05 && clickX <= 0.25 && clickY >= 0.61 && clickY <= 0.72;
+        const isMobileBtn = isMobile && clickX >= 0.20 && clickX <= 0.80 && clickY >= 0.64 && clickY <= 0.76;
 
         if (isDesktopBtn || isMobileBtn) {
           handleExploreClick(e);
@@ -195,25 +188,46 @@ export default function MagazineHero() {
   return (
     <section id="hero" className="relative w-full bg-slate-50 text-slate-900 select-none pt-16 md:pt-0">
       
-      {/* Hidden SEO Heading & Structure for Search Engines */}
+      {/* Complete Semantic Real HTML DOM Layer for Googlebot & SEO Crawlers */}
       <div className="sr-only">
-        <h1>MYK Traders - Premium Inverters, Solar Panels, Batteries & CCTV in Ramanathapuram</h1>
+        <h1>MYK Traders - Premium Inverters, Solar Panels, Batteries, CCTV & Water Purifiers in Ramanathapuram</h1>
         <p>
           Authorised dealer and service center for Luminous Inverters, Solar Power Solutions, Tubular Batteries,
           HD CCTV Cameras, RO Water Purifiers, and Solar Water Heaters in Pattinamkathan, Ramanathapuram, Tamil Nadu.
+          Contact: +91 63800 73771.
         </p>
+
+        {/* Real Crawlable HTML Structure for All Hero Categories */}
+        {HERO_PAGES.map((page) => (
+          <article key={page.id} aria-label={page.category}>
+            <h2>{page.category}: {page.title.replace('\n', ' ')}</h2>
+            <p>{page.subtitle}</p>
+            {page.specs && (
+              <ul>
+                {page.specs.map((spec, sIdx) => (
+                  <li key={sIdx}>{spec}</li>
+                ))}
+              </ul>
+            )}
+            {page.stats && (
+              <div>
+                {page.stats.map((st, stIdx) => (
+                  <span key={stIdx}>{st.num} {st.label}</span>
+                ))}
+              </div>
+            )}
+            <a href="#products" tabIndex={-1}>{page.buttonText || 'Explore Products'}</a>
+          </article>
+        ))}
       </div>
 
-      {/* 3D HORIZONTAL FLIP MAGAZINE HERO CANVAS (UNIFIED ALL SCREEN SIZES) */}
+      {/* 3D HORIZONTAL FLIP MAGAZINE HERO CANVAS */}
       <div 
         ref={containerRef}
-        className="relative w-full h-[520px] xs:h-[550px] sm:h-[600px] md:h-[85vh] min-h-[480px] sm:min-h-[540px] max-h-[750px] overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100/80 touch-pan-y"
+        className="relative w-full h-[500px] xs:h-[530px] sm:h-[560px] md:h-[590px] lg:h-[610px] xl:h-[630px] max-h-[650px] overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100/80 touch-pan-y"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
-        onTouchStart={handlePointerDown}
-        onTouchMove={handlePointerMove}
-        onTouchEnd={handlePointerUp}
       >
         {/* Background Soft Glow Accents */}
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -223,23 +237,30 @@ export default function MagazineHero() {
 
         {/* Full Viewport 3D Canvas Sheet */}
         <div className="absolute inset-0 w-full h-full z-0">
-          <FlipPageCanvas
-            currentTexture={currentTexture}
-            nextTexture={nextTexture}
-            flipProgress={flipProgress}
-          />
+          {isMounted && (
+            <Suspense fallback={null}>
+              <FlipPageCanvas
+                currentIdx={currentIdx}
+                nextIdx={nextIdx}
+                flipProgress={flipProgress}
+                isMobile={isMobile}
+                containerAspect={containerAspect}
+              />
+            </Suspense>
+          )}
         </div>
 
-        {/* Clickable Overlay Hotspot over EXPLORE PRODUCTS CTA Button */}
+        {/* Accessible Keyboard & Screen-Reader Anchor over EXPLORE PRODUCTS CTA Button */}
         <a
           href="#products"
           onClick={handleExploreClick}
-          className="absolute z-20 cursor-pointer block rounded-full focus:outline-none transition-transform active:scale-95"
+          tabIndex={0}
+          className="absolute z-20 block rounded-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 transition-transform active:scale-95 pointer-events-none focus:pointer-events-auto"
           style={{
-            left: isMobile ? '8%' : '5.8%',
-            top: isMobile ? '64%' : '64%',
-            width: isMobile ? '84%' : '26%',
-            height: isMobile ? '16%' : '12%',
+            left: isMobile ? '20%' : '5.8%',
+            top: isMobile ? '64%' : '61%',
+            width: isMobile ? '60%' : '18%',
+            height: isMobile ? '9%' : '8%',
           }}
           title="Explore Product Categories"
           aria-label="Explore Product Categories"
@@ -250,12 +271,6 @@ export default function MagazineHero() {
           <HeroControls
             onPrev={flipToPrev}
             onNext={flipToNext}
-            currentIdx={currentIdx}
-            totalPages={totalPages}
-            onSelectPage={(idx) => {
-              if (isFlipping) return;
-              setCurrentIdx(idx);
-            }}
           />
         </div>
       </div>
@@ -263,5 +278,3 @@ export default function MagazineHero() {
     </section>
   );
 }
-
-

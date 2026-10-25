@@ -1,4 +1,3 @@
-import React from 'react';
 import { Wrench, Settings, Headset, ArrowRight } from 'lucide-react';
 import technicianImg from '../assets/image copy 6.webp';
 

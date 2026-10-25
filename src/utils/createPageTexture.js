@@ -1,54 +1,6 @@
 import * as THREE from 'three';
 
-/**
- * Helper to draw soft blue circle spec icons (Droplet, UV Badge, Shield Check)
- */
-function drawSpecIcon(ctx, specText, index, cx, cy, r) {
-  // Soft Light Sky Blue Circle Background (#E0F2FE)
-  ctx.fillStyle = '#E0F2FE';
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.fill();
 
-  const iconColor = '#0066FF';
-  const textUpper = specText.toUpperCase();
-
-  if (textUpper.includes('UV') || index === 1) {
-    // 2. UV Text Badge Icon
-    ctx.fillStyle = iconColor;
-    ctx.font = `800 ${Math.round(r * 0.9)}px "Plus Jakarta Sans", sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('UV', cx, cy + 2);
-  } else if (textUpper.includes('COPPER') || textUpper.includes('PROTECTION') || textUpper.includes('SECURITY') || textUpper.includes('DETECTION') || textUpper.includes('BACKUP') || index === 2) {
-    // 3. Shield Check Icon
-    ctx.fillStyle = iconColor;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - r * 0.45);
-    ctx.lineTo(cx + r * 0.4, cy - r * 0.25);
-    ctx.lineTo(cx + r * 0.4, cy + r * 0.1);
-    ctx.bezierCurveTo(cx + r * 0.4, cy + r * 0.45, cx, cy + r * 0.6, cx, cy + r * 0.6);
-    ctx.bezierCurveTo(cx, cy + r * 0.6, cx - r * 0.4, cy + r * 0.45, cx - r * 0.4, cy + r * 0.1);
-    ctx.lineTo(cx - r * 0.4, cy - r * 0.25);
-    ctx.closePath();
-    ctx.fill();
-
-    // White plus sign inside shield
-    ctx.fillStyle = '#FFFFFF';
-    const pw = Math.max(3, Math.round(r * 0.14));
-    const pl = Math.round(r * 0.42);
-    ctx.fillRect(cx - pw / 2, cy - pl / 2, pw, pl);
-    ctx.fillRect(cx - pl / 2, cy - pw / 2, pl, pw);
-  } else {
-    // 1. Water Droplet Icon (Default / Spec 0)
-    ctx.fillStyle = iconColor;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - r * 0.52);
-    ctx.bezierCurveTo(cx - r * 0.48, cy + r * 0.1, cx - r * 0.42, cy + r * 0.52, cx, cy + r * 0.52);
-    ctx.bezierCurveTo(cx + r * 0.42, cy + r * 0.52, cx + r * 0.48, cy + r * 0.1, cx, cy - r * 0.52);
-    ctx.fill();
-  }
-}
 
 /**
  * Creates an Ultra-HD 2D canvas texture for the hero catalogue page.

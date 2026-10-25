@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Zap, Droplets, Radio } from 'lucide-react';
 import purifierImg from '../assets/image copy 2.webp';
 import cctvImg from '../assets/image copy 3.webp';

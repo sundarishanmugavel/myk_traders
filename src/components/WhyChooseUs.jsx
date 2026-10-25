@@ -1,4 +1,3 @@
-import React from 'react';
 import { TestTube, Wrench, RefreshCw, Truck } from 'lucide-react';
 
 const SERVICES = [
